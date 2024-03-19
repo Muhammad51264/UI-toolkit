@@ -26,6 +26,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'import/no-named-as-default': 1,
     'import/no-unresolved': 2,
+    'no-restricted-exports': 'off',
     'eol-last': 2,
     'no-multiple-empty-lines': 2,
     'no-param-reassign': 0,
