@@ -1,0 +1,11 @@
+{
+  "colors": {
+    "background": "#f8f9fa",
+    "errorText": "#db4437",
+    "inputFocusColor": "##777",
+    "primary": "#007bff",
+    "secondary": "#6c757d",
+    "textColor": "#343a40"
+  },
+  "fonts": {}
+}
