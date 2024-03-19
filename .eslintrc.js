@@ -42,6 +42,14 @@ module.exports = {
     'react/require-default-props': 'error',
   },
   parser: '@babel/eslint-parser',
+  parserOptions: {
+    requireConfigFile: false,
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
+  },
   overrides: [
     {
       files: ['**/*.ejs'],
