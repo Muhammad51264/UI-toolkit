@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import React from 'react';
-import { Button } from '../components/Button/button';
+import Button from '../components/Button';
 
 export default {
   title: 'Button',

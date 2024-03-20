@@ -1,12 +1,12 @@
 import React from 'react';
-import '@material/web/icon/icon.js';
+import '@material/web/icon/icon';
 import PropTypes, { any } from 'prop-types';
 import { createComponent } from '@lit/react';
-import { MdElevatedButton } from '@material/web/button/elevated-button.js';
-import { MdFilledButton } from '@material/web/button/filled-button.js';
-import { MdTextButton } from '@material/web/button/text-button.js';
-import { MdOutlinedButton } from '@material/web/button/outlined-button.js';
-import { MdFilledTonalButton } from '@material/web/button/filled-tonal-button.js';
+import { MdElevatedButton } from '@material/web/button/elevated-button';
+import { MdFilledButton } from '@material/web/button/filled-button';
+import { MdTextButton } from '@material/web/button/text-button';
+import { MdOutlinedButton } from '@material/web/button/outlined-button';
+import { MdFilledTonalButton } from '@material/web/button/filled-tonal-button';
 
 const sharedKeys = {
   react: React,
@@ -97,6 +97,7 @@ const Button = ({
 };
 
 Button.defaultProps = {
+  children: null,
   isDisabled: false,
   href: '',
   target: '',
@@ -105,11 +106,14 @@ Button.defaultProps = {
   type: 'submit',
   name: '',
   onClick: () => {},
+  onReset: () => {},
+  onSubmit: () => {},
   icon: <></>,
   variant: 'filled',
 };
 
 Button.propTypes = {
+  children: PropTypes.element,
   /** Whether the button has an icon */
   hasIcon: PropTypes.bool,
   /** The URL the button should navigate to when clicked */
@@ -123,7 +127,7 @@ Button.propTypes = {
   /** Function called when the button is clicked */
   onClick: PropTypes.func,
   /** Function called when the button's form is reset (if the button is in a form) */
-  onReset: PropTypes.func, 
+  onReset: PropTypes.func,
   /** Function called when the button's form is submitted (if the button is in a form) */
   onSubmit: PropTypes.func,
   /** Where to display the linked href URL for a link button (if it has href attribute is set ) */
