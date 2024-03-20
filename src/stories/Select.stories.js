@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { StorybookIcon } from '@storybook/icons';
 import Select from '../components/Select';
@@ -8,11 +7,24 @@ export default {
   component: Select,
 };
 
-const Template = (args) => <Select {...args} />;
+const Template = (args) => (
+  <form
+    style={{
+      border: '1px solid black',
+      width: '100%',
+      padding: '10px',
+      position: 'relative',
+      display: 'flex',
+      height: ' 100px',
+    }}
+  >
+    <Select {...args} />
+  </form>
+);
 
 const primary = {
   label: 'select',
-  outline: false,
+  isFilled: false,
   quick: false,
   isDisabled: false,
   isRequired: false,
@@ -20,9 +32,7 @@ const primary = {
   errorText: 'Please select an option.',
   supportingText: '',
   icon: undefined,
-  menuPositioning: undefined,
-  menuAlign: 'start',
-  clampMenuWidth: false,
+  menuPositioning: 'absolute',
   typeaheadDelay: 200,
   options: [
     { id: 0, content: 'option - 1', value: 'option1' },
@@ -48,10 +58,10 @@ WithIcon.args = {
   icon: <StorybookIcon />,
 };
 
-export const Outlined = Template.bind({});
-Outlined.args = {
+export const Filled = Template.bind({});
+Filled.args = {
   ...primary,
-  outline: true,
+  isFilled: true,
 };
 
 export const NoAnimation = Template.bind({});

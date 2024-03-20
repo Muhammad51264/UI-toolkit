@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { MdFilledSelect } from '@material/web/select/filled-select';
 import { MdOutlinedSelect } from '@material/web/select/outlined-select';
 import '@material/web/select/select-option';
+
 import { createComponent } from '@lit/react';
 
 /**
  * Select component.
  * @param {object} props - The component props.
- * @param {boolean} [props.outline=false] - Determines whether to render an outlined select.
+ * @param {boolean} [props.isFilled=false] - Determines whether to render an filled select.
  * @param {string} [props.label=''] - Determines the label text value.
  * @param {boolean} [props.quick=false] - Determines whether to open the menu synchronously with no animation.
  * @param {boolean} [props.isDisabled=false] - Determines whether the select is disabled.
@@ -24,12 +25,11 @@ import { createComponent } from '@lit/react';
  * @param {func} [prop.onClosing=unefined] - Determines the fired when the select's menu is about to close.
  * @param {func} [prop.onClosed=unefined] - Determines the fired event when the select's menu has finished animations and closed.
  * @param {string} [prop.menuPositioning='popover'] - Determines the select position inside an element.
- * @param {string} [prop.menuAlign='start'] - Determines whether the menu should be aligned to the start or the end of the select's textbox.
- * @param {boolean} [prop.clampMenuWidth=false] - Clamps the menu-width to the width of the select.
+ * @param {number} [prop.typeaheadDelay=200] - Determine the max time between the keystrokes of the typeahead select / menu behavior before it clears the typeahead buffer.
  */
 
 function Select({
-  outline,
+  isFilled,
   label,
   quick,
   options,
@@ -46,16 +46,11 @@ function Select({
   onClosing,
   onClosed,
   menuPositioning,
-  menuAlign,
-  clampMenuWidth,
   typeaheadDelay,
 }) {
-  console.log("menuAlign", menuAlign);
-  const SelectType = outline ? 'md-outlined-select' : 'md-filled-select';
-
   const SelectElement = createComponent({
-    tagName: outline ? 'md-outlined-select' : 'md-filled-select',
-    elementClass: outline ? MdOutlinedSelect : MdFilledSelect,
+    tagName: isFilled ? 'md-filled-select' : 'md-outlined-select',
+    elementClass: isFilled ? MdFilledSelect : MdOutlinedSelect,
     react: React,
     events: {
       onChange: 'change',
@@ -67,13 +62,6 @@ function Select({
     },
   });
 
-  // const SelectedOption = createComponent({
-  //   tagName: SelectType,
-  //   elementClass: MdSelectOption,
-  //   react: React,
-  //   events: { onChange: 'change' },
-  // });
-
   return (
     <SelectElement
       name={label}
@@ -84,9 +72,7 @@ function Select({
       error={error}
       error-text={errorText}
       supporting-text={supportingText}
-      clamp-menu-width={clampMenuWidth}
       menu-positioning={menuPositioning}
-      menu-align={menuAlign}
       typeahead-delay={typeaheadDelay}
       onChange={onChange}
       onInput={onInput}
@@ -111,7 +97,7 @@ function Select({
 }
 
 Select.propTypes = {
-  outline: PropTypes.bool,
+  isFilled: PropTypes.bool,
   label: PropTypes.string,
   quick: PropTypes.bool,
   isDisabled: PropTypes.bool,
@@ -126,9 +112,7 @@ Select.propTypes = {
   onOpened: PropTypes.func,
   onClosing: PropTypes.func,
   onClosed: PropTypes.func,
-  menuPositioning: PropTypes.oneOf([undefined, 'fixed', 'absolute', 'popover']),
-  clampMenuWidth: PropTypes.bool,
-  menuAlign: PropTypes.oneOf(['start', 'end']),
+  menuPositioning: PropTypes.oneOf(['fixed', 'absolute', 'popover']),
   typeaheadDelay: PropTypes.number,
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -140,7 +124,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  outline: false,
+  isFilled: false,
   label: '',
   quick: false,
   isDisabled: false,
@@ -155,9 +139,7 @@ Select.defaultProps = {
   onOpened: undefined,
   onClosing: undefined,
   onClosed: undefined,
-  menuPositioning: 'popover',
-  menuAlign: 'start',
-  clampMenuWidth: false,
+  menuPositioning: 'absolute',
   typeaheadDelay: 200,
   options: [
     { id: 0, content: 'option - 1', value: 'option1' },
