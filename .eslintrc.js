@@ -17,6 +17,7 @@ module.exports = {
     'prettier',
     'plugin:cypress/recommended',
     'plugin:json/recommended',
+    'plugin:react/recommended',
   ],
   plugins: ['import', 'prettier', 'react'],
   root: true,
