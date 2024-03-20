@@ -24,8 +24,6 @@ import { createComponent } from '@lit/react';
  * @param {func} [prop.onOpened=unefined] - Determines the fired event when the select's menu has finished animations and opened.
  * @param {func} [prop.onClosing=unefined] - Determines the fired when the select's menu is about to close.
  * @param {func} [prop.onClosed=unefined] - Determines the fired event when the select's menu has finished animations and closed.
- * @param {string} [prop.menuPositioning='popover'] - Determines the select position inside an element.
- * @param {number} [prop.typeaheadDelay=200] - Determine the max time between the keystrokes of the typeahead select / menu behavior before it clears the typeahead buffer.
  */
 
 function Select({
@@ -45,8 +43,6 @@ function Select({
   onOpened,
   onClosing,
   onClosed,
-  menuPositioning,
-  typeaheadDelay,
 }) {
   const SelectElement = createComponent({
     tagName: isFilled ? 'md-filled-select' : 'md-outlined-select',
@@ -72,8 +68,6 @@ function Select({
       error={error}
       error-text={errorText}
       supporting-text={supportingText}
-      menu-positioning={menuPositioning}
-      typeahead-delay={typeaheadDelay}
       onChange={onChange}
       onInput={onInput}
       onOpening={onOpening}
@@ -112,8 +106,6 @@ Select.propTypes = {
   onOpened: PropTypes.func,
   onClosing: PropTypes.func,
   onClosed: PropTypes.func,
-  menuPositioning: PropTypes.oneOf(['fixed', 'absolute', 'popover']),
-  typeaheadDelay: PropTypes.number,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -139,8 +131,6 @@ Select.defaultProps = {
   onOpened: undefined,
   onClosing: undefined,
   onClosed: undefined,
-  menuPositioning: 'absolute',
-  typeaheadDelay: 200,
   options: [
     { id: 0, content: 'option - 1', value: 'option1' },
     { id: 1, content: 'option - 2', value: 'option2' },

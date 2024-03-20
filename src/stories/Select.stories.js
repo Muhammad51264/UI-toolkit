@@ -32,8 +32,6 @@ const primary = {
   errorText: 'Please select an option.',
   supportingText: '',
   icon: undefined,
-  menuPositioning: 'absolute',
-  typeaheadDelay: 200,
   options: [
     { id: 0, content: 'option - 1', value: 'option1' },
     { id: 1, content: 'option - 2', value: 'option2' },
