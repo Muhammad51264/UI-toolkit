@@ -1,17 +1,18 @@
 import { SearchIcon, ClearIcon } from '@storybook/icons';
 import React, { useRef, useState } from 'react';
 import Input from '../components/input';
-
-const container = {
-  alignItems: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-  margin: '2rem',
-};
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
   title: 'Input',
   component: Input,
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
 const primary = {
@@ -22,16 +23,14 @@ const Template = (args) => {
   const inputRef = useRef();
   const [value, setValue] = useState('input');
   return (
-    <div style={container}>
-      <Input
-        {...args}
-        ref={inputRef}
-        onInput={() => {
-          setValue(inputRef.current.value);
-        }}
-        value={value}
-      />
-    </div>
+    <Input
+      {...args}
+      ref={inputRef}
+      onInput={() => {
+        setValue(inputRef.current.value);
+      }}
+      value={value}
+    />
   );
 };
 
@@ -76,16 +75,14 @@ export const Required = () => {
 
   return (
     <form>
-      <div style={container}>
-        <Input
-          isRequired={true}
-          label="input"
-          ref={inputRef}
-          onBlur={() => {
-            inputRef.current.reportValidity();
-          }}
-        />
-      </div>
+      <Input
+        required={true}
+        label="input"
+        ref={inputRef}
+        onBlur={() => {
+          inputRef.current.reportValidity();
+        }}
+      />
     </form>
   );
 };
@@ -113,7 +110,7 @@ WithSupportingText.args = {
 export const Disbaled = Template.bind({});
 Disbaled.args = {
   ...primary,
-  isDisabled: true,
+  disabled: true,
 };
 
 export const ReadOnly = Template.bind({});

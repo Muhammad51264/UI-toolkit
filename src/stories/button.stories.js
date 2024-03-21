@@ -1,33 +1,18 @@
 /* eslint-disable no-console */
 import React from 'react';
-import Button from '../components/Button';
+import Button from '../components/button';
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
   title: 'Button',
   component: Button,
-  argTypes: {
-    variant: {
-      control: {
-        type: 'select',
-        options: ['filled', 'outlined', 'elevated', 'tonal', 'text'],
-      },
-    },
-    name: {
-      control: 'text',
-    },
-    href: {
-      control: 'text',
-    },
-    isDisabled: {
-      control: 'boolean',
-    },
-    trailingIcon: {
-      control: 'boolean',
-    },
-  },
-  parameters: {
-    layout: 'centered',
-  },
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
 const Template = (args) => <Button {...args}> Hello </Button>;

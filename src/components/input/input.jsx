@@ -35,9 +35,7 @@ const Input = forwardRef(
       errorText,
       hasLeadingIcon,
       hasTrailingIcon,
-      isDisabled,
       isFilled,
-      isRequired,
       leadingIcon,
       prefixText,
       readOnly,
@@ -50,7 +48,6 @@ const Input = forwardRef(
     ref
   ) => {
     const Component = isFilled ? FilledInput : OutlinedInput;
-
     return (
       <>
         {customStyles && (
@@ -70,12 +67,9 @@ const Input = forwardRef(
           ref={ref}
           suffix-text={suffixText}
           supporting-text={supportingText}
+          error={error}
           {...(hasLeadingIcon ? { 'has-leading-icon': hasLeadingIcon } : {})}
           {...(hasTrailingIcon ? { 'has-trailing-icon': hasTrailingIcon } : {})}
-          {...(isDisabled ? { disabled: isDisabled } : {})}
-          {...(isRequired ? { required: isRequired } : {})}
-          {...(error ? { error } : {})}
-          {...(readOnly ? { readonly: readOnly } : {})}
           {...props}
         >
           {leadingIcon && <md-icon slot="leading-icon">{leadingIcon}</md-icon>}
@@ -93,15 +87,14 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   ariaLabel: '',
   autocomplete: '',
-  customStyles: undefined,
   cols: 20,
+  customStyles: undefined,
+  disabled: false,
   error: false,
   errorText: '',
   hasLeadingIcon: false,
   hasTrailingIcon: false,
-  isDisabled: false,
   isFilled: false,
-  isRequired: false,
   label: '',
   leadingIcon: undefined,
   max: '',
@@ -114,6 +107,7 @@ Input.defaultProps = {
   placeholder: '',
   prefixText: '',
   readOnly: false,
+  required: false,
   rows: 0,
   step: '',
   suffixText: '',
@@ -142,6 +136,10 @@ Input.propTypes = {
    */
   cols: PropTypes.number,
   /**
+   * If true , the input is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
    * If true marks the input as invalid
    */
   error: PropTypes.bool,
@@ -158,17 +156,9 @@ Input.propTypes = {
    */
   hasTrailingIcon: PropTypes.bool,
   /**
-   * If true , the input is disabled
-   */
-  isDisabled: PropTypes.bool,
-  /**
    * If true , the input overall will be filled
    */
   isFilled: PropTypes.bool,
-  /**
-   * If true , the input will be marked as required
-   */
-  isRequired: PropTypes.bool,
   /**
    * Input label
    */
@@ -217,6 +207,10 @@ Input.propTypes = {
    * If true the input will be readonly
    */
   readOnly: PropTypes.bool,
+  /**
+   * If true , the input will be marked as required
+   */
+  required: PropTypes.bool,
   /**
    * Number of rows for a textfield type
    */

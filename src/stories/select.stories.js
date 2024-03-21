@@ -1,10 +1,18 @@
 import React from 'react';
 import { StorybookIcon } from '@storybook/icons';
-import Select from '../components/Select';
+import Select from '../components/select';
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
   title: 'select',
   component: Select,
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
 const Template = (args) => (
