@@ -6,11 +6,9 @@ import '@material/web/select/select-option';
 import { createComponent } from '@lit/react';
 
 function Select({
-  errorText,
   icon,
   isFilled,
   options,
-  supportingText,
   ...props
 }) {
   const SelectElement = createComponent({
@@ -29,8 +27,6 @@ function Select({
 
   return (
     <SelectElement
-      error-text={errorText}
-      supporting-text={supportingText}
       {...props}
     >
       {icon && <md-icon slot="leading-icon">{icon}</md-icon>}

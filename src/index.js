@@ -8,3 +8,4 @@ export { default as Input } from './components/input';
 export { default as Radio } from './components/radio';
 export { default as Select } from './components/select';
 export { default as Switch } from './components/switch';
+export { default as Tab } from './components/tabs';

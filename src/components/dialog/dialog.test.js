@@ -1,8 +1,8 @@
 import '@material/web/button/text-button';
 import { render, fireEvent } from '@testing-library/react';
 import { screen, deepQuerySelector } from 'shadow-dom-testing-library';
-import Dialog from './dialog.jsx';
 import React, { useRef } from 'react';
+import Dialog from './dialog.jsx';
 
 HTMLDialogElement.prototype.showModal = jest.fn(function mock() {
   this.open = true;

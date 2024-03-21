@@ -52,6 +52,7 @@ const primary = {
     </svg>
   ),
   disabled: false,
+  disabled: false,
   variant: 'filled',
   text: 'Button',
 };
