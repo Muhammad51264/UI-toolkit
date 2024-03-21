@@ -16,20 +16,29 @@ const RadioElement = createComponent({
 /**
  * Radio component.
  * @param {object} props - The component props.
- * @param {string} [props.value=''] - Value of the radio button.
- * @param {string} [props.name=''] - Name of the radio button.
  * @param {boolean} [props.isChecked=false] - Determines whether the radio button is checked.
  * @param {boolean} [props.isDisabled=false] - Determines whether the radio button is disabled.
+ * @param {string} [props.name=''] - Name of the radio button.
  * @param {func} [prop.onChange=unefined] - Determines the fired event when the radio button's value is about to change.
  * @param {func} [prop.onInput=unefined] - Determines the fired event triggered when the user click on the radio button.
+ * @param {string} [props.value=''] - Value of the radio button.
+ * @param {string} [props.size=''] - Determines the size of the radio button.
  */
-function Radio({ value, isChecked, isDisabled, name, onChange, onInput }) {
+function Radio({
+  isChecked,
+  isDisabled,
+  name,
+  onChange,
+  onInput,
+  size,
+  value,
+}) {
   return (
     <RadioElement
-      value={value}
-      name={name ?? value}
       checked={isChecked}
       disabled={isDisabled}
+      value={value}
+      name={name || value}
       onChange={onChange}
       onInput={onInput}
     />
@@ -43,6 +52,7 @@ Radio.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   onInput: PropTypes.func,
+  size: PropTypes.string,
 };
 
 Radio.defaultProps = {
@@ -52,6 +62,7 @@ Radio.defaultProps = {
   name: '',
   onChange: undefined,
   onInput: undefined,
+  size: '',
 };
 
 export default Radio;

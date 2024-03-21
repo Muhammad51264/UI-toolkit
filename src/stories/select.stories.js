@@ -29,26 +29,26 @@ const Template = (args) => (
 );
 
 const primary = {
-  label: 'select',
-  isFilled: false,
-  quick: false,
-  isDisabled: false,
-  isRequired: false,
   error: false,
   errorText: 'Please select an option.',
-  supportingText: '',
   icon: undefined,
-  options: [
-    { id: 0, content: 'option - 1', value: 'option1' },
-    { id: 1, content: 'option - 2', value: 'option2' },
-    { id: 2, content: 'option - 3', value: 'option3' },
-  ],
+  isDisabled: false,
+  isFilled: false,
+  isRequired: false,
+  label: 'select',
   onChange: () => console.log('change'),
+  onClosing: () => console.log('closing'),
+  onClosed: () => console.log('closed'),
   onInput: () => console.log('input'),
   onOpened: () => console.log('opened'),
   onOpening: () => console.log('opening'),
-  onClosed: () => console.log('closed'),
-  onClosing: () => console.log('closing'),
+  options: [
+    { content: 'option - 1', id: 0, value: 'option1' },
+    { content: 'option - 2', id: 1, value: 'option2' },
+    { content: 'option - 3', id: 2, value: 'option3' },
+  ],
+  quick: false,
+  supportingText: '',
 };
 
 export const Default = Template.bind({});

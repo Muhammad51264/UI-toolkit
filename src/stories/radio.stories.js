@@ -24,6 +24,7 @@ const primary = {
   isDisabled: false,
   onChange: () => console.log('change'),
   onInput: () => console.log('input'),
+  size: '',
 };
 
 export const Default = Template.bind({});
