@@ -4,7 +4,7 @@ import Select from '../components/select';
 import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
-  title: 'select',
+  title: 'Select',
   component: Select,
   decorators: [
     (Story) => (
@@ -18,12 +18,10 @@ export default {
 const Template = (args) => (
   <form
     style={{
-      border: '1px solid black',
-      width: '100%',
-      padding: '10px',
-      position: 'relative',
+      alignItems: 'center',
       display: 'flex',
-      height: ' 100px',
+      justifyContent: 'center',
+      margin: '2rem',
     }}
   >
     <Select {...args} />
