@@ -30,7 +30,7 @@ const Input = forwardRef(
   (
     {
       ariaLabel,
-      customStyles,
+      className,
       error,
       errorText,
       hasLeadingIcon,
@@ -49,35 +49,22 @@ const Input = forwardRef(
   ) => {
     const Component = isFilled ? FilledInput : OutlinedInput;
     return (
-      <>
-        {customStyles && (
-          <style>
-            {`${isFilled ? 'md-filled-text-field' : 'md-outlined-text-field'} {${Object.entries(
-              customStyles
-            )
-              .map(([property, value]) => `${property}: ${value};`)
-              .join(' ')}}`}
-          </style>
-        )}
-        <Component
-          aria-label={ariaLabel}
-          error-text={errorText}
-          pattern={validationPattern}
-          prefix-text={prefixText}
-          ref={ref}
-          suffix-text={suffixText}
-          supporting-text={supportingText}
-          error={error}
-          {...(hasLeadingIcon ? { 'has-leading-icon': hasLeadingIcon } : {})}
-          {...(hasTrailingIcon ? { 'has-trailing-icon': hasTrailingIcon } : {})}
-          {...props}
-        >
-          {leadingIcon && <md-icon slot="leading-icon">{leadingIcon}</md-icon>}
-          {trailingIcon && (
-            <md-icon slot="trailing-icon">{trailingIcon}</md-icon>
-          )}
-        </Component>
-      </>
+      <Component
+        aria-label={ariaLabel}
+        error-text={errorText}
+        pattern={validationPattern}
+        prefix-text={prefixText}
+        ref={ref}
+        suffix-text={suffixText}
+        supporting-text={supportingText}
+        error={error}
+        {...(hasLeadingIcon ? { 'has-leading-icon': hasLeadingIcon } : {})}
+        {...(hasTrailingIcon ? { 'has-trailing-icon': hasTrailingIcon } : {})}
+        {...props}
+      >
+        {leadingIcon && <md-icon slot="leading-icon">{leadingIcon}</md-icon>}
+        {trailingIcon && <md-icon slot="trailing-icon">{trailingIcon}</md-icon>}
+      </Component>
     );
   }
 );
@@ -87,8 +74,8 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   ariaLabel: '',
   autocomplete: '',
+  className: '',
   cols: 20,
-  customStyles: undefined,
   disabled: false,
   error: false,
   errorText: '',
@@ -128,9 +115,9 @@ Input.propTypes = {
    */
   autocomplete: PropTypes.string,
   /**
-   * Input custom styles
+   * Styles class name
    */
-  customStyles: PropTypes.object,
+  className: PropTypes.string,
   /**
    * Input number of columns
    */
