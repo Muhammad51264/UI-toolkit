@@ -1,9 +1,17 @@
 import React from 'react';
 import Radio from '../components/radio';
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
   title: 'Radio',
   component: Radio,
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
 const Template = (args) => (
