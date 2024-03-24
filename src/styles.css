@@ -1,0 +1,63 @@
+.card-wrapper {
+  --md-elevation-level: 1;
+  border-radius: 0.4rem;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: space-around;
+  max-width: 20rem;
+  min-height: 6.25rem;
+  min-width: 12.5rem;
+  position: relative;
+  --md-elevation-shadow-color: #000000;
+  /* var(md-sys-color-shadow) */
+}
+
+.card-wrapper .elevated:disabled {
+    background-color: var(md-sys-color-surface);
+    --md-elevation-level: 1;
+    opacity: 0.38;
+}
+
+/* md-sys-elevation-level1
+ */
+.elevated {
+  background-color: #f7f2fa;
+  /* var(md-sys-color-surface-container-low) */
+}
+
+/* md-sys-color-surface-tint */
+
+.filled {
+  background-color: #f4dddc;
+}
+
+.outlined {
+  background-color: transparent;
+  border: 1px solid #e1d0cf;
+}
+
+/* .card-img {
+  width: 100%;
+  max-height: 250px;
+}
+
+.card-contaner {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.01rem;
+  padding: 0.6125rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card-contaner * {
+  margin: 0;
+}
+
+.card-supporting-text {
+  margin-top: 0.625rem;
+  padding-right: 0.825rem;
+} */
