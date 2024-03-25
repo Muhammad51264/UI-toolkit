@@ -28,11 +28,10 @@ const Template = (args) => (
 );
 
 const primary = {
-  isChecked: false,
-  isDisabled: false,
+  checked: false,
+  disabled: false,
   onChange: () => console.log('change'),
   onInput: () => console.log('input'),
-  size: '',
 };
 
 export const Default = Template.bind({});
@@ -43,11 +42,11 @@ Default.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...primary,
-  isDisabled: true,
+  disabled: true,
 };
 
 export const Checked = Template.bind({});
 Checked.args = {
   ...primary,
-  isChecked: true,
+  checked: true,
 };
