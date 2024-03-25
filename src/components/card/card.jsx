@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes from prop-types library
-import '../../styles.css';
+import PropTypes from 'prop-types';
 import '@material/web/ripple/ripple';
 import '@material/web/elevation/elevation';
 
 function Card({
   cardType,
-  headline,
-  isDisabled,
-  image,
-  subhead,
-  supportingText,
+  children,
+  maxHeight,
+  maxWidth,
+  minHeight,
+  minWidth,
+  ...props
 }) {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -26,96 +26,151 @@ function Card({
     <>
       <style>
         {`
-:root {
- --md-sys-color-on-surface: #1D1B20;
- --md-sys-state-dragged-state-layer-opacity:0.16;
- --md-sys-color-surface-container-low: #F7F2FA;
- --md-sys-color-surface: #FEF7FF;
- --md-sys-color-shadow: #000;
- --md-sys-color-secondary: #625B71;
- --md-ripple-hover-color: var(--md-sys-color-on-surface);
- --md-ripple-pressed-color: var(--md-sys-color-on-surface);
- --md-elevation-shadow-color:var(--md-sys-color-shadow);
-}
-
 .card-wrapper {
- --md-elevation-level: 1;
- --md-elevation-shadow-color: var(--md-sys-color-shadow);
- border-radius: 0.75rem;
- border: 0;
- display: flex;
- flex-direction: column;
- flex-wrap: wrap;
- marging 0 0.5rem;
- padding: 0 1rem;
- position: relative;
- text-align: center;
+  --md-elevation-shadow-color: var(--md-sys-color-shadow);
+  background-color: var(--md-sys-color-surface);
+  border: 0;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 0.5rem;
+  max-height: ${maxHeight};
+  max-width: ${maxWidth};
+  min-height: ${minHeight};
+  min-width: ${minWidth};
+  padding: 0 1rem;
+  position: relative;
+  text-align: center;
 }
 
 .elevated {
- background-color: var(--md-sys-color-surface-container-low);
+  --md-elevation-level: 1;
+  background-color: var(--md-sys-color-surface-container-low);
 }
 
-.elevated:disabled {
-    background-color: var(--md-sys-color-surface);
-    opacity: 0.38;
-}
-
-.elevated:focus {
-    outline: var(--md-sys-color-secondary);
+.elevated:disabled, .filled:disabled {
+  --md-elevation-level: 1;
+  background-color: var(--md-sys-color-surface);
+  opacity: 0.38;
 }
 
 .elevated.draggable {
   --md-elevation-level: 4;
   background-color: var(--md-sys-color-on-surface);
-  opacity: 0.16;
+  opacity: var(--md-sys-state-dragged-state-layer-opacity);
+}
+
+.elevated:focus-visible {
+  outline: 1px solid var(--md-sys-color-secondary);
 }
 
 .filled {
- background-color: #f4dddc;
+  --md-elevation-level: 0;
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+
+.filled.draggable {
+  --md-elevation-level: 3;
+  background-color: var(--md-sys-color-on-surface);
+}
+
+.filled:focus-visible {
+  outline: 1px solid var(--md-sys-color-surface);
 }
 
 .outlined {
- background-color: transparent;
- border: 1px solid #e1d0cf;
+  --md-elevation-level: 0;
+  background-color: var(--md-sys-color-surface);
+  outline: 1px solid var(--md-sys-color-outline-variant);
 }
+
+.outlined:disabled {
+  outline: 1px solid var(--md-sys-color-outline);
+}
+
+.outlined.draggable {
+  --md-elevation-level: 3;
+  background-color: var(--md-sys-color-on-surface);
+  opacity: var(--md-sys-state-dragged-state-layer-opacity);
+}
+
+.outlined:focus-visible {
+  outline: var(--md-sys-state-focus-indicator-outer-offset) solid var(--md-sys-color-secondary);
+  outline-width: var(--md-sys-state-focus-indicator-thickness);
+}
+
 `}
       </style>
 
       <button
         className={`card-wrapper ${cardType} ${isDragging && 'draggable'}`}
-        disabled={isDisabled}
-        draggable
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
+        {...props}
       >
-        {(cardType === 'elevated' || isDisabled) && (
-          <md-elevation aria-hidden="true"></md-elevation>
-        )}
-        {!isDisabled && <md-ripple></md-ripple>}
+        <md-elevation aria-hidden="true"></md-elevation>
+        {!props.disabled && <md-ripple></md-ripple>}
+        {children}
       </button>
     </>
   );
 }
 
 Card.propTypes = {
+  /**
+   * Type of card: elevated, filled, or outlined
+   */
   cardType: PropTypes.oneOf(['elevated', 'filled', 'outlined']),
-  headline: PropTypes.node,
-  image: PropTypes.string,
-  isDisabled: PropTypes.bool,
+
+  /**
+   * The content inside the card
+   */
+  children: PropTypes.node,
+
+  /**
+   * If true, the card is disabled
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * If true, the card is draggable
+   */
+  draggable: PropTypes.bool,
+  /**
+   * Card max height
+   */
+  maxHeight: PropTypes.string,
+  /**
+   * Card max width
+   */
+  maxWidth: PropTypes.string,
+
+  /**
+   * Card min height
+   */
+  minHeight: PropTypes.string,
+  /**
+   * Card min width
+   */
+  minWidth: PropTypes.string,
+
+  /**
+   * Function called when the card is clicked
+   */
   onClick: PropTypes.func,
-  subhead: PropTypes.node,
-  supportingText: PropTypes.node,
 };
 
 Card.defaultProps = {
   cardType: 'elevated',
-  headline: 'headline',
-  image: '',
-  isDisabled: false,
+  children: null,
+  disabled: false,
+  draggable: false,
+  maxHeight: 'auto',
+  maxWidth: '25rem',
+  minHeight: '9.375rem',
+  minWidth: '15.625rem',
   onClick: null,
-  subhead: 'subHead',
-  supportingText: '',
 };
 
 export default Card;
