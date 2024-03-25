@@ -5,44 +5,13 @@ import { MdOutlinedSelect } from '@material/web/select/outlined-select';
 import '@material/web/select/select-option';
 import { createComponent } from '@lit/react';
 
-/**
- * Select component.
- * @param {object} props - The component props.
- * @param {boolean} [props.error=false] - Determines whether the select is in an error state.
- * @param {string} [props.errorText='Please select an option.'] - The error message to display when the select is in an error state.
- * @param {HTMLElement} [props.icon=undefined] - The icon to display within the select.
- * @param {boolean} [props.isDisabled=false] - Determines whether the select is disabled.
- * @param {boolean} [props.isFilled=false] - Determines whether the select is filled.
- * @param {boolean} [props.isRequired=false] - Determines whether the select is required.
- * @param {string} [props.label=''] - The label text for the select.
- * @param {func} [props.onChange=undefined] - The function called when the select value changes.
- * @param {func} [props.onClosing=undefined] - The function called when the select menu is about to close.
- * @param {func} [props.onClosed=undefined] - The function called when the select menu has finished closing.
- * @param {func} [props.onInput=undefined] - The function called when the user inputs a value into the select.
- * @param {func} [props.onOpened=undefined] - The function called when the select menu has finished opening.
- * @param {func} [props.onOpening=undefined] - The function called when the select menu is about to open.
- * @param {Array} [props.options] - Determine the select's options.
- * @param {boolean} [props.quick=false] - Determines whether the select opens its menu synchronously with no animation.
- * @param {string} [props.supportingText=''] - Additional text to display below the select.
- */
-
 function Select({
-  error,
   errorText,
   icon,
-  isDisabled,
   isFilled,
-  isRequired,
-  label,
-  onChange,
-  onClosing,
-  onClosed,
-  onInput,
-  onOpened,
-  onOpening,
   options,
-  quick,
   supportingText,
+  ...props
 }) {
   const SelectElement = createComponent({
     tagName: isFilled ? 'md-filled-select' : 'md-outlined-select',
@@ -60,20 +29,9 @@ function Select({
 
   return (
     <SelectElement
-      disabled={isDisabled}
-      error={error}
       error-text={errorText}
-      label={label}
-      name={label}
-      onChange={onChange}
-      onClosing={onClosing}
-      onClosed={onClosed}
-      onInput={onInput}
-      onOpened={onOpened}
-      onOpening={onOpening}
-      quick={quick}
-      required={isRequired}
       supporting-text={supportingText}
+      {...props}
     >
       {icon && <md-icon slot="leading-icon">{icon}</md-icon>}
       {Array.isArray(options) &&
@@ -91,19 +49,71 @@ function Select({
 }
 
 Select.propTypes = {
+  /**
+   * If true, an error state will be displayed.
+   */
   error: PropTypes.bool,
+  /**
+   * Error message to be displayed when error prop is true.
+   */
   errorText: PropTypes.string,
+  /**
+   * Icon element to be displayed inside the select.
+   */
   icon: PropTypes.element,
-  isDisabled: PropTypes.bool,
+  /**
+   * If true, the select will be disabled.
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * If true, the select will be displayed as a filled select.
+   */
   isFilled: PropTypes.bool,
-  isRequired: PropTypes.bool,
+
+  /**
+   * If true, the select will be required.
+   */
+  required: PropTypes.bool,
+
+  /**
+   * Label for the select input.
+   */
   label: PropTypes.string,
+
+  /**
+   * Function called when the select value changes.
+   */
   onChange: PropTypes.func,
+
+  /**
+   * Function called when the select is closing.
+   */
   onClosing: PropTypes.func,
+
+  /**
+   * Function called when the select is closed.
+   */
   onClosed: PropTypes.func,
+
+  /**
+   * Function called when the select value is being input.
+   */
   onInput: PropTypes.func,
+
+  /**
+   * Function called when the select is opened.
+   */
   onOpened: PropTypes.func,
+
+  /**
+   * Function called when the select is opening.
+   */
   onOpening: PropTypes.func,
+
+  /**
+   * Array of options to be displayed in the select.
+   */
   options: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.node,
@@ -111,7 +121,15 @@ Select.propTypes = {
       value: PropTypes.string,
     })
   ),
+
+  /**
+   * If true, enable quick selection mode.
+   */
   quick: PropTypes.bool,
+
+  /**
+   * Supporting text to be displayed below the select input.
+   */
   supportingText: PropTypes.string,
 };
 
@@ -119,9 +137,9 @@ Select.defaultProps = {
   error: false,
   errorText: 'Please select an option.',
   icon: undefined,
-  isDisabled: false,
+  disabled: false,
   isFilled: false,
-  isRequired: false,
+  required: false,
   label: '',
   onChange: undefined,
   onClosing: undefined,

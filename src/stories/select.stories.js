@@ -32,9 +32,9 @@ const primary = {
   error: false,
   errorText: 'Please select an option.',
   icon: undefined,
-  isDisabled: false,
+  disabled: false,
   isFilled: false,
-  isRequired: false,
+  required: false,
   label: 'select',
   onChange: () => console.log('change'),
   onClosing: () => console.log('closing'),
@@ -77,13 +77,13 @@ NoAnimation.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...primary,
-  isDisabled: true,
+  disabled: true,
 };
 
-export const isRequired = Template.bind({});
-isRequired.args = {
+export const Required = Template.bind({});
+Required.args = {
   ...primary,
-  isRequired: true,
+  required: true,
 };
 
 export const IsInvalid = Template.bind({});
