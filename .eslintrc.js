@@ -18,8 +18,11 @@ module.exports = {
     'plugin:cypress/recommended',
     'plugin:json/recommended',
     'plugin:react/recommended',
+    'react-app',
+    'react-app/jest',
+    'plugin:storybook/recommended',
   ],
-  plugins: ['import', 'prettier', 'react'],
+  plugins: ['import', 'prettier', 'react', 'jest'],
   root: true,
   rules: {
     'class-methods-use-this': 0,
