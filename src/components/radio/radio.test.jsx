@@ -1,56 +1,55 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import Radio from './radio';
-import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
-
+import {
+  deepQuerySelector,
+  screen,
+} from 'shadow-dom-testing-library';
+import userEvent from '@testing-library/user-event';
 
 describe('Radio component', () => {
   beforeAll(() => {
-    ElementInternals.prototype.setValidity = function (flags, message) {
-      flags = 'mockedFlags';
-      message = 'mockedMessage';
-    };
+    ElementInternals.prototype.setValidity = jest.fn();
   });
+
+  const renderRadio = (props) => {
+    render(<Radio {...props} />);
+    return waitFor(() => screen.getByShadowRole('radio'));
+  };
+
+  const getRadioInput = (mdRadioHost) => {
+    const shadowRoot = mdRadioHost.shadowRoot;
+    return deepQuerySelector(shadowRoot, 'input[type="radio"]');
+  };
+
   it('It renders successfully', async () => {
-    render(<Radio />);
-
-    const inputRadio = await screen.findByShadowRole('radio');
-    expect(inputRadio).toBeInTheDocument();
+    await renderRadio();
   });
 
-  it('clicking on a radio button should select it', async () => {
-    render(<Radio />);
+  it('Clicking on a radio button should select it', async () => {
+    const mdRadioHost = await renderRadio();
+    const radioInput = getRadioInput(mdRadioHost);
 
-    await waitFor(() => {
-      const mdRadioHost = document.querySelector('md-radio');
-      expect(mdRadioHost).toBeInTheDocument();
-    });
-
-    const shadowRoot = document.querySelector('md-radio').shadowRoot;
-    const radioInput = deepQuerySelector(shadowRoot, 'input[type="radio"]');
-
-    expect(radioInput).toBeInTheDocument();
-    
     fireEvent.click(radioInput);
-    
+
     expect(radioInput).toBeChecked();
   });
 
-  it('clicking on a disabled radio button should not select it', async () => {
-    render(<Radio disabled={true} />);
+  it('Clicking on a disabled radio button should not select it', async () => {
+    const mdRadioHost = await renderRadio({ disabled: true });
+    const radioInput = getRadioInput(mdRadioHost);
 
-    screen.debug(document.documentElement, undefined, { indent: 4 });
-
-    await waitFor(() => {
-      const mdRadioHost = document.querySelector('md-radio');
-      expect(mdRadioHost).toBeInTheDocument();
-    });
-
-    const shadowRoot = document.querySelector('md-radio').shadowRoot;
-    const radioInput = deepQuerySelector(shadowRoot, 'input[type="radio"]');
-    console.log(radioInput);
-    fireEvent.click(radioInput);
+    await userEvent.click(radioInput);
 
     expect(radioInput).not.toBeChecked();
+  });
+
+  it('Clicking on a selected radio button should not deselect it', async () => {
+    const mdRadioHost = await renderRadio({ checked: true });
+    const radioInput = getRadioInput(mdRadioHost);
+
+    fireEvent.click(radioInput);
+
+    expect(radioInput).toBeChecked();
   });
 });
