@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
-import './node_modules/intersection-observer';
 import './node_modules/element-internals-polyfill';
+import './node_modules/@inrupt/jest-jsdom-polyfills';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
