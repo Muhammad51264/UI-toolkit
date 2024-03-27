@@ -8,8 +8,8 @@ const SwitchComponent = createComponent({
   elementClass: MdSwitch,
   react: React,
   events: {
-    onChange: 'change',
-    onInput: 'input',
+    change: 'change',
+    input: 'input',
   },
 });
 
@@ -17,8 +17,6 @@ const Switch = ({
   ariaLabel,
   className,
   label,
-  onChange,
-  onInput,
   showOnlySelectedIcon,
   ...props
 }) =>
@@ -28,7 +26,6 @@ const Switch = ({
       <SwitchComponent
         aria-label={ariaLabel}
         className={className}
-        id={label}
         {...(showOnlySelectedIcon
           ? { 'show-only-selected-icon': showOnlySelectedIcon }
           : {})}
@@ -48,13 +45,13 @@ const Switch = ({
 
 Switch.defaultProps = {
   ariaLabel: '',
+  change: undefined,
   className: '',
   disabled: false,
   icons: false,
+  input: undefined,
   label: '',
   name: '',
-  onChange: undefined,
-  onInput: undefined,
   required: false,
   selected: false,
   showOnlySelectedIcon: false,
@@ -67,6 +64,10 @@ Switch.propTypes = {
    */
   ariaLabel: PropTypes.string,
   /**
+   * Function to be excuted when whenever selected changes due to user interaction (bubbles and composed).
+   */
+  change: PropTypes.func,
+  /**
    * Styles class name
    */
   className: PropTypes.string,
@@ -78,7 +79,10 @@ Switch.propTypes = {
    * If true , the switch will show  both the selected and deselected icons.
    */
   icons: PropTypes.bool,
-
+  /**
+   * Function to be excuted when whenever selected changes due to user interaction (bubbles)
+   */
+  input: PropTypes.func,
   /**
    * Switch label
    */
@@ -87,14 +91,6 @@ Switch.propTypes = {
    * Switch name
    */
   name: PropTypes.string,
-  /**
-   * Function to be excuted when whenever selected changes due to user interaction (bubbles and composed).
-   */
-  onChange: PropTypes.func,
-  /**
-   * Function to be excuted when whenever selected changes due to user interaction (bubbles)
-   */
-  onInput: PropTypes.func,
   /**
    * If true the switch is required to be selected when participating in form submission.
    */
