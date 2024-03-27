@@ -1,10 +1,7 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import Radio from './radio';
-import {
-  deepQuerySelector,
-  screen,
-} from 'shadow-dom-testing-library';
+import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
 
 describe('Radio component', () => {
@@ -47,7 +44,6 @@ describe('Radio component', () => {
   it('Clicking on a selected radio button should not deselect it', async () => {
     const mdRadioHost = await renderRadio({ checked: true });
     const radioInput = getRadioInput(mdRadioHost);
-
     fireEvent.click(radioInput);
 
     expect(radioInput).toBeChecked();
