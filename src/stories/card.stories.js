@@ -56,7 +56,7 @@ const Template = (args) => (
         <p
           style={{
             textAlign: 'left',
-            marginTop: '0.625rem',
+            margin: '0.625rem 0',
           }}
         >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate et

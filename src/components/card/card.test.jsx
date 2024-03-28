@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Card from './card';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
@@ -24,34 +24,31 @@ describe('Card component', () => {
     );
   };
   const getElementInShadowRoot = async (hostSelector, elementSelector) => {
-    let host;
-    await waitFor(() => {
-      host = document.querySelector(hostSelector);
-    });
+    const host = await document.querySelector(hostSelector);
     const shadowRoot = host.shadowRoot;
     const elementInShadowRoot = deepQuerySelector(shadowRoot, elementSelector);
     return elementInShadowRoot;
   };
 
-  it('It renders successfully', async () => {
+  it('It renders successfully', () => {
     displayCard();
   });
 
-  it('Renders filled Card', async () => {
+  it('Renders filled Card', () => {
     displayCard({ cardType: 'filled' });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveClass('filled');
   });
 
-  it('Renders outlined Card', async () => {
+  it('Renders outlined Card', () => {
     displayCard({ cardType: 'outlined' });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveClass('outlined');
   });
 
-  it('Card Displays Its children', async () => {
+  it('Card Displays Its children', () => {
     displayCard();
 
     const header = screen.getByText('test');
@@ -61,7 +58,7 @@ describe('Card component', () => {
   it('Card shows ribble effects when clicking on it', async () => {
     displayCard();
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
 
     const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
     await userEvent.click(card);
@@ -83,7 +80,7 @@ describe('Card component', () => {
   it('Card shows ribble effects when hovering over it', async () => {
     displayCard();
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
 
     const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
     await userEvent.hover(card);
@@ -91,17 +88,17 @@ describe('Card component', () => {
     expect(rippleSurface).toHaveClass('surface hovered');
   });
 
-  it('Disabled card has no ribble effect', async () => {
+  it('Disabled card has no ribble effect', () => {
     displayCard({ disabled: true });
 
     const mdRippleHost = document.querySelector('md-ripple');
     expect(mdRippleHost).toBeNull();
   });
 
-  it('Renders a draggable card', async () => {
+  it('Renders a draggable card', () => {
     displayCard({ draggable: true });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveAttribute('draggable', 'true');
   });
 });

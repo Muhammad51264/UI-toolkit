@@ -15,8 +15,7 @@ describe('Radio component', () => {
   };
 
   const getRadioInput = (mdRadioHost) => {
-    const shadowRoot = mdRadioHost.shadowRoot;
-    return deepQuerySelector(shadowRoot, 'input[type="radio"]');
+    return deepQuerySelector(mdRadioHost, 'input[type="radio"]');
   };
 
   it('It renders successfully', async () => {
