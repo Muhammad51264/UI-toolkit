@@ -1,6 +1,5 @@
 import React from 'react';
-import '@material/web/icon/icon';
-import PropTypes, { any } from 'prop-types';
+import PropTypes from 'prop-types';
 import { createComponent } from '@lit/react';
 import { MdElevatedButton } from '@material/web/button/elevated-button';
 import { MdFilledButton } from '@material/web/button/filled-button';
@@ -45,11 +44,6 @@ export const TonalButton = createComponent({
   ...sharedKeys,
   tagName: 'md-filled-tonal-button',
   elementClass: MdFilledTonalButton,
-  events: {
-    onClick: 'click',
-    onReset: 'reset',
-    onSubmit: 'submit',
-  },
 });
 
 const buttonVariants = {
@@ -80,7 +74,6 @@ const Button = ({
   return (
     <Component
       disabled={isDisabled}
-      hasIcon={hasIcon}
       onClick={onClick}
       onReset={onReset}
       onSubmit={onSubmit}
@@ -90,14 +83,14 @@ const Button = ({
       name={name}
       trailingIcon={trailingIcon}
     >
-      {icon}
+      {hasIcon && icon}
       {children}
     </Component>
   );
 };
 
 Button.defaultProps = {
-  children: null,
+  children: '',
   isDisabled: false,
   href: '',
   target: '',
@@ -108,35 +101,23 @@ Button.defaultProps = {
   onClick: () => {},
   onReset: () => {},
   onSubmit: () => {},
-  icon: <></>,
+  icon: null,
   variant: 'filled',
 };
 
 Button.propTypes = {
-  children: PropTypes.element,
-  /** Whether the button has an icon */
+  children: PropTypes.node,
   hasIcon: PropTypes.bool,
-  /** The URL the button should navigate to when clicked */
   href: PropTypes.string,
-  /** The icon element to be displayed alongside the button text */
-  icon: any,
-  /** Whether the button is disabled */
+  icon: PropTypes.node,
   isDisabled: PropTypes.bool,
-  /** The name attribute of the button */
   name: PropTypes.string,
-  /** Function called when the button is clicked */
   onClick: PropTypes.func,
-  /** Function called when the button's form is reset (if the button is in a form) */
   onReset: PropTypes.func,
-  /** Function called when the button's form is submitted (if the button is in a form) */
   onSubmit: PropTypes.func,
-  /** Where to display the linked href URL for a link button (if it has href attribute is set ) */
-  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top', 'framename']),
-  /** Whether to render the icon at the inline end of the label rather than the inline start. */
+  target: PropTypes.string,
   trailingIcon: PropTypes.bool,
-  /** The type attribute of the button */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  /** The variant style of the button */
   variant: PropTypes.oneOf(['filled', 'outlined', 'elevated', 'tonal', 'text']),
 };
 

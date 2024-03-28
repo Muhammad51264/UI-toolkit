@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import './node_modules/element-internals-polyfill';
+// import './node_modules/element-internals-polyfill';
 import './node_modules/@inrupt/jest-jsdom-polyfills';
 import { mockAnimations } from './src/__mocks__/mockedAnimation';
 
