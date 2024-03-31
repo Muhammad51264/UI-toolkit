@@ -20,6 +20,7 @@ const Template = (args) => <Dialog {...args}></Dialog>;
 
 export const Default = Template.bind({});
 Default.args = {
+  'aria-label': 'test',
   open: true,
   headlineElement: <p>dialog</p>,
   children: (

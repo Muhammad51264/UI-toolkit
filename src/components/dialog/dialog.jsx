@@ -18,19 +18,10 @@ const DialogComponent = createComponent({
 
 const Dialog = forwardRef(
   (
-    {
-      actionElement,
-      ariaLabel,
-      children,
-      className,
-      headlineElement,
-      open,
-      ...props
-    },
+    { actionElement, children, className, headlineElement, open, ...props },
     ref
   ) => (
     <DialogComponent
-      aria-label={ariaLabel}
       className={className}
       ref={ref}
       {...(open ? { open } : {})}
@@ -48,7 +39,7 @@ Dialog.displayName = 'Dialog';
 
 Dialog.defaultProps = {
   actionElement: null,
-  ariaLabel: '',
+  'aria-label': '',
   children: null,
   className: '',
   headlineElement: null,
@@ -66,7 +57,7 @@ Dialog.propTypes = {
   /**
    * Dialog area label
    */
-  ariaLabel: PropTypes.string,
+  'aria-label': PropTypes.string,
   /**
    * Dialog main content
    */
