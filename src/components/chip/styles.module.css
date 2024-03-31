@@ -1,0 +1,91 @@
+.container {
+  --md-elevation-level: 0;
+  align-items: center;
+  border-radius: var(--md-sys-shape-corner-small);
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  height: 2rem;
+  justify-content: flex-start;
+  outline: 1px solid var(--md-sys-color-outline);
+  padding: 0 1rem;
+  position: relative;
+}
+
+.label {
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  user-select: none;
+  line-height: var(--md-sys-typescale-label-large-line-height);
+}
+
+md-icon {
+  --md-icon-size: 1.125rem;
+  color: var(--md-sys-color-primary);
+}
+
+.elevated {
+  background-color: var(--md-sys-color-surface-container-low);
+  --md-elevation-level: 1 !important;
+  --md-elevation-shadow-color: var(--md-sys-color-shadow);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.dragged {
+  --md-elevation-level: 4 !important;
+}
+
+.elevated:hover {
+  --md-elevation-level: 2 !important;
+}
+
+.elevated:hover .label {
+  color: var(--md-sys-color-on-surface);
+}
+
+/* assist chip styling */
+
+/* .assist {
+  outline: 1px solid var(--md-sys-color-outline);
+} */
+
+.disabled {
+  --md-elevation-level: 0;
+  cursor: auto;
+  outline: 1px solid rgba(29, 27, 32, 0.12);
+}
+
+.disabled > * {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38 !important;
+}
+
+.elevated.disabled {
+  background-color: rgba(29, 27, 32, 0.12);
+}
+
+.assist:focus-visible {
+  --md-elevation-level: 1 !important;
+  outline: var(--md-sys-state-focus-indicator-thickness) solid
+    var(--md-sys-color-secondary);
+}
+
+/* filter chip styling */
+
+.filter .label {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.filter.selected {
+  background-color: var(--md-sys-color-surface-container-low);
+  outline: 0;
+}
+
+.filter.selected .label {
+  color: var(--md-sys-color-on-secondary-container);
+}
