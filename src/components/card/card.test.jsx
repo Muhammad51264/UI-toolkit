@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Card from './card';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
@@ -100,5 +100,17 @@ describe('Card component', () => {
 
     const card = screen.getByTestId('card');
     expect(card).toHaveAttribute('draggable', 'true');
+  });
+
+  it('Drags a draggable card', () => {
+    const { getByTestId } = render(<Card draggable={true} />);
+  
+    const card = getByTestId('card');
+  
+    fireEvent.dragStart(card);
+    expect(card).toHaveClass('draggable');
+  
+    fireEvent.dragEnd(card);
+    expect(card).not.toHaveClass('draggable');
   });
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import Select from './select';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
-import { expect } from '@storybook/test';
+import { expect, userEvent } from '@storybook/test';
 
 describe('Select component', () => {
   const openMenu = jest.fn();
@@ -96,7 +96,7 @@ describe('Select component', () => {
   it('Select label is appearing', async () => {
     renderSelect({ label: 'test' });
 
-    let selectContainer = await getSelectContainer();
+    const selectContainer = await getSelectContainer();
 
     const label = await deepQuerySelector(selectContainer, '.label');
 
@@ -106,7 +106,7 @@ describe('Select component', () => {
   it('Select supporting text is visible', async () => {
     renderSelect({ supportingText: 'test' });
 
-    let selectContainer = await getSelectContainer();
+    const selectContainer = await getSelectContainer();
 
     expect(selectContainer).toHaveAttribute('supporting-text', 'test');
   });
@@ -114,19 +114,31 @@ describe('Select component', () => {
   it('Select error text is visible', async () => {
     renderSelect({ error: true, errorText: 'test' });
 
-    let selectContainer = await getSelectContainer();
+    const selectContainer = await getSelectContainer();
 
     expect(selectContainer).toHaveAttribute('error-text', 'test');
   });
 
-  it.only('Select is disabled', async () => {
+  it('Select is disabled', async () => {
     renderSelect({ disabled: true });
 
-    let selectContainer = await getSelectContainer();
+    const selectContainer = await getSelectContainer();
 
     expect(selectContainer).toHaveAttribute('disabled');
+  });
 
-});
+  it('Select is required', async () => {
+    renderSelect({ required: true });
+
+    const selectContainer = await getSelectContainer();
+
+    const fieldContainer = await deepQuerySelector(
+      selectContainer,
+      '.with-end'
+    );
+
+    expect(fieldContainer).toHaveClass('required');
+  });
 
   it('Selecting an option will display it in the select input', async () => {
     renderSelect();
@@ -159,3 +171,5 @@ describe('Select component', () => {
     });
   });
 });
+
+
