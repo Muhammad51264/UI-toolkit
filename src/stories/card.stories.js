@@ -47,8 +47,15 @@ const Template = (args) => (
   gap:0.1rem;
   margin-top: 1rem;
  }
+
+ .card-wrapper{
+  max-width: 35rem
+ }
  `}
     </style>
+
+    <div className='card-wrapper'>
+
     <Card {...args}>
       <div className="container">
         <h1>Headline</h1>
@@ -66,6 +73,8 @@ const Template = (args) => (
         </p>
       </div>
     </Card>
+
+    </div>
   </>
 );
 

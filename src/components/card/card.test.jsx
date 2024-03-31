@@ -103,9 +103,9 @@ describe('Card component', () => {
   });
 
   it('Drags a draggable card', () => {
-    const { getByTestId } = render(<Card draggable={true} />);
+    render(<Card draggable={true} />)
   
-    const card = getByTestId('card');
+    const card = screen.getByTestId('card');
   
     fireEvent.dragStart(card);
     expect(card).toHaveClass('draggable');

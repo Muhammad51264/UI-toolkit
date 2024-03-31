@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
-import styles from "./styles.module.css";
-import styled from 'styled-components';
+import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 import '@material/web/ripple/ripple';
 import '@material/web/elevation/elevation';
 
-
-const StyledCard = styled.div`
-  max-height: ${props => props.maxheigh};
-  max-width: ${props => props.maxwidth};
-  min-height: ${props => props.minheight};
-  min-width: ${props => props.minwidth};
-`;
-function Card({
-  cardType,
-  children,
-  disabled,
-  ...props
-}) {
+function Card({ cardType, children, disabled, ...props }) {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragStart = () => {
@@ -30,8 +17,8 @@ function Card({
 
   return (
     <>
-      <StyledCard
-          data-testid="card"
+      <div
+        data-testid="card"
         className={`card-wrapper ${styles[cardType]} ${styles['card-wrapper']} ${isDragging && 'draggable'} ${disabled && styles.disabled}`}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
@@ -40,7 +27,7 @@ function Card({
         <md-elevation aria-hidden="true"></md-elevation>
         {!disabled && <md-ripple></md-ripple>}
         {children}
-      </StyledCard>
+      </div>
     </>
   );
 }
@@ -66,24 +53,6 @@ Card.propTypes = {
    */
   draggable: PropTypes.bool,
   /**
-   * Card max height
-   */
-  maxheight: PropTypes.string,
-  /**
-   * Card max width
-   */
-  maxwidth: PropTypes.string,
-
-  /**
-   * Card min height
-   */
-  minheight: PropTypes.string,
-  /**
-   * Card min width
-   */
-  minwidth: PropTypes.string,
-
-  /**
    * Function called when the card is clicked
    */
   onClick: PropTypes.func,
@@ -94,10 +63,6 @@ Card.defaultProps = {
   children: null,
   disabled: false,
   draggable: false,
-  maxheight: 'auto',
-  maxwidth: '25rem',
-  minjeight: '9.375rem',
-  minwidth: '15.625rem',
   onClick: null,
 };
 
