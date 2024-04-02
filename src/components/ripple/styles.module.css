@@ -1,0 +1,23 @@
+.ripple {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.element {
+  transform: scale(0);
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0.35;
+  background-color: var(--md-ripple-pressed-color);
+  animation-name: ripple-animation;
+}
+
+@keyframes ripple-animation {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
