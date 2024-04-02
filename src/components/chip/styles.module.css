@@ -5,31 +5,38 @@
   color: var(--md-sys-color-on-surface);
   cursor: pointer;
   display: flex;
-  gap: 0.5rem;
   height: 2rem;
   justify-content: flex-start;
   outline: 1px solid var(--md-sys-color-outline);
-  padding: 0 1rem;
+  overflow: hidden;
   position: relative;
+  z-index: 0;
 }
 
 .label {
   font-family: var(--md-sys-typescale-label-large-font);
   font-size: var(--md-sys-typescale-label-large-size);
   font-weight: var(--md-sys-typescale-label-large-weight);
-  user-select: none;
   line-height: var(--md-sys-typescale-label-large-line-height);
+  user-select: none;
 }
 
-md-icon {
+.assist .label,
+.filter .label,
+.suggestion .label {
+  padding: 0 1rem;
+}
+
+.container > md-icon {
   --md-icon-size: 1.125rem;
   color: var(--md-sys-color-primary);
+  padding: 0 0.5rem;
 }
 
 .elevated {
-  background-color: var(--md-sys-color-surface-container-low);
   --md-elevation-level: 1 !important;
   --md-elevation-shadow-color: var(--md-sys-color-shadow);
+  background-color: var(--md-sys-color-surface-container-low);
 }
 
 .disabled {
@@ -48,12 +55,6 @@ md-icon {
   color: var(--md-sys-color-on-surface);
 }
 
-/* assist chip styling */
-
-/* .assist {
-  outline: 1px solid var(--md-sys-color-outline);
-} */
-
 .disabled {
   --md-elevation-level: 0;
   cursor: auto;
@@ -69,13 +70,11 @@ md-icon {
   background-color: rgba(29, 27, 32, 0.12);
 }
 
-.assist:focus-visible {
+.container:focus-visible {
   --md-elevation-level: 1 !important;
   outline: var(--md-sys-state-focus-indicator-thickness) solid
     var(--md-sys-color-secondary);
 }
-
-/* filter chip styling */
 
 .filter .label {
   color: var(--md-sys-color-on-surface-variant);
@@ -88,4 +87,56 @@ md-icon {
 
 .filter.selected .label {
   color: var(--md-sys-color-on-secondary-container);
+}
+
+.input {
+  --md-elevation-level: 0;
+  --md-ripple-hover-color: none;
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  display: flex;
+  outline: 1px solid var(--md-sys-color-outline);
+  padding: 0;
+  position: relative;
+}
+
+.input .label {
+  padding: 0 0.75rem;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.avatar {
+  align-items: center;
+  color: var(--md-sys-color-primary);
+  display: flex;
+  justify-content: center;
+  padding: 0rem 0.5rem 0rem 0.25rem;
+  position: relative;
+}
+
+.avatar > md-icon {
+  --md-icon-size: 1.5rem;
+}
+
+.close {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0.5rem;
+  overflow: hidden;
+  padding: 0.125rem;
+  position: relative;
+  z-index: 1;
+}
+
+.close > md-icon {
+  --md-icon-size: 1.125rem;
 }

@@ -1,10 +1,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import Card from './card';
 import { screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
-import { expect } from '@storybook/test';
-
+import Card from '.';
 
 describe('Card component', () => {
   const displayCard = (props) => {
@@ -15,7 +13,7 @@ describe('Card component', () => {
     );
   };
 
-  it('It renders successfully', () => {
+  it('renders successfully', () => {
     displayCard();
   });
 
@@ -46,7 +44,7 @@ describe('Card component', () => {
     const ripple = screen.getByTestId('ripple');
 
     expect(ripple).toBeEmptyDOMElement();
-    
+
     await userEvent.dblClick(ripple);
 
     expect(ripple).not.toBeEmptyDOMElement();
@@ -76,12 +74,12 @@ describe('Card component', () => {
 
   it('Drags a draggable card', () => {
     displayCard({ draggable: true });
-  
+
     const card = screen.getByTestId('card');
-  
+
     fireEvent.dragStart(card);
     expect(card).toHaveClass('draggable');
-  
+
     fireEvent.dragEnd(card);
     expect(card).not.toHaveClass('draggable');
   });

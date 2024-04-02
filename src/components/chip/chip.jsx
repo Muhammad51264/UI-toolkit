@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 import '@material/web/elevation/elevation';
-import '@material/web/ripple/ripple';
 import '@material/web/icon/icon';
 import '@material/web/chips/input-chip';
+import Ripple from '../ripple';
 function Chip({
+  avatarIcon,
   chipType,
   disabled,
   elevated,
@@ -35,35 +36,55 @@ function Chip({
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
       <div
-        className={`${styles.container} ${styles[chipType]} ${elevated && styles.elevated} ${disabled && styles.disabled} ${selected && styles.selected} ${isDragging && styles.dragged}`}
+        className={`${styles.container} ${styles[chipType]} ${elevated && styles.elevated} 
+        ${disabled && styles.disabled} ${selected && styles.selected} ${isDragging && styles.dragged}`}
         tabIndex={disabled ? -1 : 0}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
+        data-testid="chip"
         {...props}
       >
+        {avatarIcon && chipType === 'input' && (
+          <span className={styles.avatar}>
+            <md-icon tabIndex={disabled ? -1 : 0}>{avatarIcon}</md-icon>
+          </span>
+        )}
+        <md-elevation aria-hidden="true"></md-elevation>
+
         {leadingIcon && (
           <md-icon tabIndex={disabled ? -1 : 0}>{leadingIcon}</md-icon>
         )}
 
         {selected && chipType === 'filter' && <md-icon>done</md-icon>}
 
-        <span className={styles.label}>{label}</span>
+        <span
+          className={`${styles.label} ${(chipType === 'input' || trailingIcon) && styles['no-padding-right']}
+           ${(avatarIcon || leadingIcon || (selected && chipType === 'filter')) && styles['no-padding-left']}`}
+        >
+          {label}
+        </span>
 
-        {!disabled && <md-ripple></md-ripple>}
+        {!disabled && <Ripple/>}
 
         {trailingIcon && (
           <md-icon tabIndex={disabled ? -1 : 0}>{trailingIcon}</md-icon>
         )}
 
-        {chipType === 'input' && <md-icon>close
-        <md-ripple></md-ripple>
-          </md-icon>}
+        {chipType === 'input' && (
+          <span className={styles.close} >
+            <md-icon tabIndex={disabled ? -1 : 0}>close</md-icon>
+          </span>
+        )}
       </div>
     </>
   );
 }
 
 Chip.propTypes = {
+  /**
+   * Avatar icon.
+   */
+  avatarIcon: PropTypes.node,
   /**
    * Chip type.
    */
@@ -103,11 +124,12 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
+  avatarIcon: '',
   chipType: 'assist',
   disabled: false,
   draggable: false,
   elevated: false,
-  label: 'label',
+  label: 'label chip',
   leadingIcon: '',
   onClick: undefined,
   selected: false,
