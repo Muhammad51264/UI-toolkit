@@ -103,7 +103,7 @@ describe('Card component', () => {
   });
 
   it('Drags a draggable card', () => {
-    render(<Card draggable={true} />)
+    displayCard({ draggable: true });
   
     const card = screen.getByTestId('card');
   

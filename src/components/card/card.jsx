@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 import '@material/web/ripple/ripple';
 import '@material/web/elevation/elevation';
-
+import Ripple from '../ripple/ripple';
 function Card({ cardType, children, disabled, ...props }) {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -24,8 +24,9 @@ function Card({ cardType, children, disabled, ...props }) {
         onDragEnd={handleDragEnd}
         {...props}
       >
+        <Ripple duration={575}/>
         <md-elevation aria-hidden="true"></md-elevation>
-        {!disabled && <md-ripple></md-ripple>}
+
         {children}
       </div>
     </>

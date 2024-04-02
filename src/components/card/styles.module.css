@@ -10,6 +10,7 @@
   padding: 0 1rem;
   position: relative;
   text-align: center;
+  overflow: hidden;
 }
 
 .elevated {
