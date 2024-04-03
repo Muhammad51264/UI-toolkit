@@ -1,18 +1,9 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Chip from './chip';
-import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
+import { screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
-import { Ripple } from '@material/web/ripple/internal/ripple';
-import { expect, queries } from '@storybook/test';
-
-Ripple.prototype.startPressAnimation = jest.fn(async () => {
-  const mdRippleHost = document.querySelector('md-ripple');
-  const shadowRoot = mdRippleHost.shadowRoot;
-  const rippleSurface = deepQuerySelector(shadowRoot, '.surface');
-
-  rippleSurface.classList += ' pressed';
-});
+import { expect } from '@storybook/test';
 
 describe('Chip component', () => {
   it('It renders successfully', () => {
@@ -29,16 +20,10 @@ describe('Chip component', () => {
 
   it('disabled chip component has no ribble effect', async () => {
     render(<Chip disabled={true} />);
-    const chipContainer = screen.getByTestId('chip');
 
-    expect(chipContainer).toHaveClass('disabled');
+    const ripple = screen.queryByTestId('ripple');
 
-    let rippleContainer;
-    await waitFor(() => {
-      rippleContainer = document.querySelector('md-ripple');
-    });
-
-    expect(rippleContainer).toBeNull();
+    expect(ripple).toBeNull();
   });
 
   it('Drags a draggable chip', () => {
@@ -60,16 +45,13 @@ describe('Chip component', () => {
   it('Chip component shows ribble effects when clicking on it', async () => {
     render(<Chip />);
 
-    const chipContainer = screen.getByTestId('chip');
-    let rippleContainer;
-    await waitFor(() => {
-      rippleContainer = document.querySelector('md-ripple');
-    });
-    const ripple = deepQuerySelector(rippleContainer, '.surface');
+    const ripple = screen.getByTestId('ripple');
 
-    await userEvent.click(chipContainer);
+    expect(ripple).toBeEmptyDOMElement();
 
-    expect(ripple).toHaveClass('surface hovered pressed');
+    await userEvent.dblClick(ripple);
+
+    expect(ripple).not.toBeEmptyDOMElement();
   });
 
   it('Filter chip component renders successfully', () => {
@@ -98,9 +80,9 @@ describe('Chip component', () => {
       />
     );
 
-    const icons = document.querySelectorAll('md-icon');
+    const icons = document.querySelectorAll('span');
 
-    expect(icons.length).toBe(4);
+    expect(icons.length).toBe(5);
   });
 
   it('All Icons can not be selected when chip is disabled', () => {
@@ -114,9 +96,11 @@ describe('Chip component', () => {
       />
     );
 
-    const icons = document.querySelectorAll('md-icon');
+    const icons = document.querySelectorAll('span');
 
-    icons.forEach((icon) => {
+    icons.forEach((icon, index) => {
+      // this is label container
+      if (index === 2) return;
       expect(icon).toHaveAttribute('tabIndex', '-1');
     });
   });

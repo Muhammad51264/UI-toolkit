@@ -13,6 +13,10 @@
   z-index: 0;
 }
 
+.container:hover {
+  background-color: var(--md-ripple-hover-color);
+}
+
 .label {
   font-family: var(--md-sys-typescale-label-large-font);
   font-size: var(--md-sys-typescale-label-large-size);
@@ -27,15 +31,15 @@
   padding: 0 1rem;
 }
 
-.container > md-icon {
-  --md-icon-size: 1.125rem;
+.icon {
   color: var(--md-sys-color-primary);
+  height: 1.125rem;
   padding: 0 0.5rem;
+  width: 1.125rem;
 }
 
 .elevated {
-  --md-elevation-level: 1 !important;
-  --md-elevation-shadow-color: var(--md-sys-color-shadow);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: var(--md-sys-color-surface-container-low);
 }
 
@@ -44,15 +48,7 @@
 }
 
 .dragged {
-  --md-elevation-level: 4 !important;
-}
-
-.elevated:hover {
-  --md-elevation-level: 2 !important;
-}
-
-.elevated:hover .label {
-  color: var(--md-sys-color-on-surface);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .disabled {
@@ -71,7 +67,7 @@
 }
 
 .container:focus-visible {
-  --md-elevation-level: 1 !important;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   outline: var(--md-sys-state-focus-indicator-thickness) solid
     var(--md-sys-color-secondary);
 }
@@ -90,8 +86,6 @@
 }
 
 .input {
-  --md-elevation-level: 0;
-  --md-ripple-hover-color: none;
   color: var(--md-sys-color-on-surface);
   cursor: pointer;
   display: flex;
@@ -125,18 +119,15 @@
   --md-icon-size: 1.5rem;
 }
 
-.close {
+.icon-container {
   align-items: center;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   margin: 0 0.5rem;
-  overflow: hidden;
-  padding: 0.125rem;
-  position: relative;
-  z-index: 1;
 }
 
-.close > md-icon {
-  --md-icon-size: 1.125rem;
+
+.close-icon{
+  width: 1.125rem;
+  height: 1.125rem;
 }
