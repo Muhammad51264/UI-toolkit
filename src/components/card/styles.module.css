@@ -13,19 +13,31 @@
   overflow: hidden;
 }
 
-.elevated {
-  --md-elevation-level: 1;
-  background-color: var(--md-sys-color-surface-container-low);
+
+.card-wrapper:hover {
+  background-color: var(--md-ripple-hover-color);
 }
 
-.elevated.disabled, .filled.disabled {
-  --md-elevation-level: 1;
+.elevated {
+  box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.disabled{
   background-color: var(--md-sys-color-surface);
   opacity: 0.38;
 }
 
+.elevated.disabled {
+  box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.outlined.disabled{
+  outline: 1px solid var(--md-sys-color-outline);
+
+}
+
 .elevated.draggable {
-  --md-elevation-level: 4;
+  box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: var(--md-sys-color-on-surface);
   opacity: var(--md-sys-state-dragged-state-layer-opacity);
 }
@@ -40,7 +52,7 @@
 }
 
 .filled.draggable {
-  --md-elevation-level: 3;
+  box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: var(--md-sys-color-on-surface);
 }
 
@@ -49,17 +61,13 @@
 }
 
 .outlined {
-  --md-elevation-level: 0;
   background-color: var(--md-sys-color-surface);
   outline: 1px solid var(--md-sys-color-outline-variant);
 }
 
-.outlined.disabled {
-  outline: 1px solid var(--md-sys-color-outline);
-}
 
 .outlined.draggable {
-  --md-elevation-level: 3;
+  box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: var(--md-sys-color-on-surface);
   opacity: var(--md-sys-state-dragged-state-layer-opacity);
 }

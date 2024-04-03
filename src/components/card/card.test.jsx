@@ -1,19 +1,10 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Card from './card';
-import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
+import { screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
 import { expect } from '@storybook/test';
-import { Ripple } from '@material/web/ripple/internal/ripple';
 
-// Mock the startPressAnimation method
-Ripple.prototype.startPressAnimation = jest.fn(async () => {
-  const mdRippleHost = document.querySelector('md-ripple');
-  const shadowRoot = mdRippleHost.shadowRoot;
-  const rippleSurface = deepQuerySelector(shadowRoot, '.surface');
-
-  rippleSurface.classList += ' pressed';
-});
 
 describe('Card component', () => {
   const displayCard = (props) => {
@@ -22,12 +13,6 @@ describe('Card component', () => {
         <h1>test</h1>
       </Card>
     );
-  };
-  const getElementInShadowRoot = async (hostSelector, elementSelector) => {
-    const host = await document.querySelector(hostSelector);
-    const shadowRoot = host.shadowRoot;
-    const elementInShadowRoot = deepQuerySelector(shadowRoot, elementSelector);
-    return elementInShadowRoot;
   };
 
   it('It renders successfully', () => {
@@ -55,44 +40,31 @@ describe('Card component', () => {
     expect(header).toBeVisible();
   });
 
-  it('Card shows ribble effects when clicking on it', async () => {
+  it('Card shows ripple effects when clicking on it', async () => {
     displayCard();
 
-    const card = screen.getByTestId('card');
+    const ripple = screen.getByTestId('ripple');
 
-    const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
-    await userEvent.click(card);
+    expect(ripple).toBeEmptyDOMElement();
+    
+    await userEvent.dblClick(ripple);
 
-    expect(rippleSurface).toHaveClass('surface hovered pressed');
+    expect(ripple).not.toBeEmptyDOMElement();
   });
 
   it('Card has elevation effect', async () => {
     displayCard();
 
-    const rippleSurface = await getElementInShadowRoot(
-      'md-elevation',
-      '.shadow'
-    );
-
-    expect(rippleSurface).toBeInTheDocument();
-  });
-
-  it('Card shows ribble effects when hovering over it', async () => {
-    displayCard();
-
     const card = screen.getByTestId('card');
 
-    const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
-    await userEvent.hover(card);
-
-    expect(rippleSurface).toHaveClass('surface hovered');
+    expect(card).toHaveClass('elevated');
   });
 
-  it('Disabled card has no ribble effect', () => {
+  it('Disabled card has no ripple effect', () => {
     displayCard({ disabled: true });
 
-    const mdRippleHost = document.querySelector('md-ripple');
-    expect(mdRippleHost).toBeNull();
+    const ripple = screen.queryByTestId('ripple');
+    expect(ripple).toBeNull();
   });
 
   it('Renders a draggable card', () => {

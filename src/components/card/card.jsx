@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
-import '@material/web/ripple/ripple';
-import '@material/web/elevation/elevation';
-import Ripple from '../ripple/ripple';
+import Ripple from '../ripple';
 function Card({ cardType, children, disabled, ...props }) {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -19,13 +17,13 @@ function Card({ cardType, children, disabled, ...props }) {
     <>
       <div
         data-testid="card"
-        className={`card-wrapper ${styles[cardType]} ${styles['card-wrapper']} ${isDragging && 'draggable'} ${disabled && styles.disabled}`}
+        className={`${styles['card-wrapper']} ${styles[cardType]} ${styles['card-wrapper']}
+         ${isDragging && styles.draggable} ${disabled && styles.disabled} `}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         {...props}
       >
-        <Ripple duration={575}/>
-        <md-elevation aria-hidden="true"></md-elevation>
+        {!disabled && <Ripple duration={875} />}
 
         {children}
       </div>
