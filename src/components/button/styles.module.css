@@ -1,0 +1,17 @@
+.button {
+  border-radius: var(--md-sys-shape-corner-full);
+  border: 0;
+  height: 2.5rem;
+}
+
+.text {
+  padding: 0 1.5rem;
+}
+
+.text-no-padding-left {
+  padding-left: 0;
+}
+
+.icon {
+  padding: 0 1rem 0.5rem;
+}

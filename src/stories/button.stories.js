@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import Button from '../components/button';
 import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
@@ -15,27 +14,40 @@ export default {
   ],
 };
 
-const Template = (args) => <Button {...args}> Hello </Button>;
+const Template = (args) => (
+  <>
+    <style>
+      {`
+        :root{
+          --md-sys-shape-corner-full: 20px;
+      `}
+    </style>
+    <Button {...args} />
+  </>
+);
 
 export const Filled = Template.bind({});
 Filled.args = {
-  hasIcon: true,
   icon: (
-    <svg slot="icon" viewBox="0 0 48 48">
-      <path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 -960 960 960"
+      width="24"
+    >
+      <path d="M439.5-440H201.869v-81H439.5v-237.631h81V-521h237.631v81H520.5v237.631h-81V-440Z" />
     </svg>
   ),
-  isDisabled: false,
+  disabled: false,
   variant: 'filled',
   onClick: () => {
     console.log('Filled clicked');
   },
-  trailingIcon: true,
 };
 
 export const Elevated = Template.bind({});
 Elevated.args = {
-  isDisabled: false,
+  disabled: false,
   variant: 'elevated',
   onClick: () => {
     console.log('Elevated clicked');
@@ -49,7 +61,7 @@ Outlined.args = {
       <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
     </svg>
   ),
-  isDisabled: false,
+  disabled: false,
   variant: 'outlined',
   onClick: () => {
     console.log('Outlined clicked');
@@ -58,7 +70,7 @@ Outlined.args = {
 
 export const FilledTonal = Template.bind({});
 FilledTonal.args = {
-  isDisabled: false,
+  disabled: false,
   hasIcon: true,
   variant: 'tonal',
   onClick: () => {
@@ -68,10 +80,7 @@ FilledTonal.args = {
 
 export const TextButton = Template.bind({});
 TextButton.args = {
-  isDisabled: false,
-  hasIcon: true,
-  href: 'www.google.com',
-  target: '_blank',
+  disabled: false,
   variant: 'text',
   type: 'submit',
   onClick: () => {
