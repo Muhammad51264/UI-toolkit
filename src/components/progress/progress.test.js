@@ -20,4 +20,13 @@ describe('Progress Component', () => {
     expect(linearProgress).toBeInTheDocument();
     expect(linearProgress).toHaveClass('loader');
   });
+
+  it('renders with inset class if the inset prop is passed', () => {
+    renderProgress({ className: 'testClassName' });
+
+    const circularProgress = screen.getByTestId('progress');
+    expect(circularProgress).toBeInTheDocument();
+    expect(circularProgress).toHaveClass('loader');
+    expect(circularProgress).toHaveClass('testClassName');
+  });
 });

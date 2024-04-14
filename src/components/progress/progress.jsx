@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-const Progress = ({ variant }) => (
-  <div className={styles.loader} data-testid="progress">
+const Progress = ({ variant, className }) => (
+  <div
+    className={`${styles.loader} ${styles[className]}`}
+    data-testid="progress"
+  >
     {variant === 'linear' ? (
       <div className={styles.barContainer}>
         <div className={styles.barTrack}>
@@ -30,10 +33,12 @@ const Progress = ({ variant }) => (
 
 Progress.defaultProps = {
   variant: 'circular',
+  className: '',
 };
 
 Progress.propTypes = {
   variant: PropTypes.oneOf(['linear', 'circular']),
+  className: PropTypes.string,
 };
 
 export default Progress;
