@@ -1,6 +1,7 @@
 export { default as Button } from './components/button';
 export { default as Card } from './components/card';
 export { default as CheckBox } from './components/checkbox';
+export { default as Chip } from './components/chip';
 export { default as Dialog } from './components/dialog';
 export { default as FabIcon } from './components/fabicon';
 export { default as Input } from './components/input';
