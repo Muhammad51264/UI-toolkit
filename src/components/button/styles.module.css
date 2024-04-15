@@ -1,10 +1,20 @@
 .button {
+  align-items: center;
+  background-color: transparent;
   border-radius: var(--md-sys-shape-corner-full);
   border: 0;
+  cursor: pointer;
+  display: flex;
   height: 2.5rem;
+  overflow: hidden;
+  position: relative;
 }
 
 .text {
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  line-height: var(--md-sys-typescale-label-large-line-height);
   padding: 0 1.5rem;
 }
 
@@ -13,5 +23,145 @@
 }
 
 .icon {
-  padding: 0 1rem 0.5rem;
+  display: flex;
+  padding: 0 0.5rem 0 1rem;
+}
+
+.button > .icon > * {
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
+.elevated > .icon > *,
+.outlined > .icon > *,
+.textType > .icon > * {
+  fill: var(--md-sys-color-primary);
+}
+
+.filled > .icon > * {
+  fill: var(--md-sys-color-on-primary);
+}
+
+.tonal > .icon > * {
+  fill: var(--md-sys-color-on-secondary-container);
+}
+
+.elevated {
+  --md-ripple-pressed-color: var(--md-sys-color-primary);
+  background-color: var(--md-sys-color-surface-container-low);
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: var(--md-sys-color-primary);
+}
+
+.filled {
+  --md-ripple-pressed-color: var(--md-sys-color-on-primary);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+.tonal {
+  --md-ripple-pressed-color: var(--md-sys-color-on-secondary-container);
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.outlined {
+  --md-ripple-pressed-color: var(--md-sys-color-primary);
+  outline: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-primary);
+}
+
+.textType {
+  --md-ripple-pressed-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-primary);
+}
+
+.elevated:hover {
+  color: var(--md-sys-color-primary);
+}
+
+.filled:hover,
+.tonal:hover {
+  background-color: var(--md-sys-color-primary);
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: var(--md-sys-color-on-primary);
+}
+
+.tonal:hover {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.button:disabled {
+  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
+  box-shadow: none;
+}
+
+.outlined:disabled {
+  background-color: transparent;
+  outline: 1px solid rgba(121, 116, 126, 0.12);
+}
+
+.textType:disabled {
+  background-color: transparent;
+}
+
+.button:disabled > .text {
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+}
+
+.button:disabled > .icon > * {
+  fill: rgba(var(--md-sys-color-on-surface), 0.38);
+}
+
+.button:hover::before {
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 0.08;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.elevated:hover::before,
+.outlined:hover::before,
+.textType:hover::before {
+  background-color: var(--md-sys-color-primary);
+}
+
+.filled:hover::before {
+  background-color: var(--md-sys-color-on-primary);
+}
+
+.tonal:hover::before {
+  background-color: var(--md-sys-color-on-secondary-container);
+}
+
+.button:focus-visible {
+  outline: var(--md-sys-state-focus-indicator-thickness) solid
+    var(--md-sys-color-secondary);
+  outline-offset: var(--md-sys-state-focus-indicator-outer-offset);
+}
+
+.elevated:focus-visible::after {
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.elevated:focus-visible::after {
+  background-color: var(--md-sys-color-primary);
+}
+
+.filled:focus-visible::after {
+  background-color: var(--md-sys-color-on-primary);
 }

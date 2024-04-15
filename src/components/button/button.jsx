@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
+import Ripple from '../ripple';
 
-const Button = ({ icon, disabled, name, text, type, variant, ...props }) => (
-  <button {...props} className={styles.button}>
+const Button = ({ icon, text, variant, ...props }) => (
+  <button
+    {...props}
+    className={`${styles.button} ${styles[variant]}`}
+    {...props}
+  >
     {icon && <span className={styles.icon}>{icon}</span>}
     <span
       className={`${styles.text} ${icon && styles['text-no-padding-left']}`}
     >
       {text}
     </span>
+    <Ripple />
   </button>
 );
 
 Button.defaultProps = {
+  draggable: false,
   disabled: false,
-  text: 'button',
   type: 'button',
   name: '',
   onClick: undefined,
@@ -26,6 +32,10 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+  /**
+   * Whether the button is disabled
+   */
+  draggable: PropTypes.bool,
   /**
    * Whether the button is disabled
    */
@@ -53,7 +63,7 @@ Button.propTypes = {
   /**
    * The text inside the button
    */
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   /**
    * The type attribute of the button
    */
@@ -61,7 +71,13 @@ Button.propTypes = {
   /**
    * The variant style of the button
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'elevated', 'tonal', 'text']),
+  variant: PropTypes.oneOf([
+    'filled',
+    'outlined',
+    'elevated',
+    'tonal',
+    'textType',
+  ]),
 };
 
 export default Button;
