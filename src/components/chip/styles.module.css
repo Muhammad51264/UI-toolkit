@@ -1,0 +1,133 @@
+.container {
+  --md-elevation-level: 0;
+  align-items: center;
+  border-radius: var(--md-sys-shape-corner-small);
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  justify-content: flex-start;
+  outline: 1px solid var(--md-sys-color-outline);
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.container:hover {
+  background-color: var(--md-ripple-hover-color);
+}
+
+.label {
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  user-select: none;
+}
+
+.assist .label,
+.filter .label,
+.suggestion .label {
+  padding: 0 1rem;
+}
+
+.icon {
+  color: var(--md-sys-color-primary);
+  height: 1.125rem;
+  padding: 0 0.5rem;
+  width: 1.125rem;
+}
+
+.elevated {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: var(--md-sys-color-surface-container-low);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.dragged {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.disabled {
+  --md-elevation-level: 0;
+  cursor: auto;
+  outline: 1px solid rgba(29, 27, 32, 0.12);
+}
+
+.disabled > * {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38 !important;
+}
+
+.elevated.disabled {
+  background-color: rgba(29, 27, 32, 0.12);
+}
+
+.container:focus-visible {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  outline: var(--md-sys-state-focus-indicator-thickness) solid
+    var(--md-sys-color-secondary);
+}
+
+.filter .label {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.filter.selected {
+  background-color: var(--md-sys-color-surface-container-low);
+  outline: 0;
+}
+
+.filter.selected .label {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.input {
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  display: flex;
+  outline: 1px solid var(--md-sys-color-outline);
+  padding: 0;
+  position: relative;
+}
+
+.input .label {
+  padding: 0 0.75rem;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.avatar {
+  align-items: center;
+  color: var(--md-sys-color-primary);
+  display: flex;
+  justify-content: center;
+  padding: 0rem 0.5rem 0rem 0.25rem;
+  position: relative;
+}
+
+.avatar > md-icon {
+  --md-icon-size: 1.5rem;
+}
+
+.icon-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 0.5rem;
+}
+
+
+.close-icon{
+  width: 1.125rem;
+  height: 1.125rem;
+}

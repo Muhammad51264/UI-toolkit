@@ -1,0 +1,74 @@
+.container {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.headline {
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-label-medium-font);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+  margin-bottom: 1.25rem;
+}
+
+.time-clock-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.selector-container,.time-container {
+  display: flex;
+}
+
+.time-selector::-webkit-inner-spin-button,
+.time-selector::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.time-selector {
+  border: 0;
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-sys-typescale-display-large-font);
+  font-size: var(--md-sys-typescale-display-large-size);
+  font-weight: var(--md-sys-typescale-display-large-weight);
+  height: 5rem;
+  letter-spacing: var(--md-sys-typescale-display-large-tracking);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--md-sys-color-surface-container-highest);
+  border-radius: var(--md-sys-shape-corner-small);
+}
+
+.twenty-four-hour-mode{
+  width: 7.125rem;
+}
+
+.time-selector:focus {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.seperator{
+  align-items: center;
+  justify-content: center;
+  color: var(--md-sys-color-on-surface);
+  display: flex;
+  height: 5rem;
+  width: 1.5rem;
+  font-family: var(--md-sys-typescale-display-large-font);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+  font-size: var(--md-sys-typescale-display-large-size);
+
+}
