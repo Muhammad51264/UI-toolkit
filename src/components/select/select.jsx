@@ -5,12 +5,7 @@ import { MdOutlinedSelect } from '@material/web/select/outlined-select';
 import '@material/web/select/select-option';
 import { createComponent } from '@lit/react';
 
-function Select({
-  icon,
-  isFilled,
-  options,
-  ...props
-}) {
+function Select({ className, icon, options, isFilled, ...props }) {
   const SelectElement = createComponent({
     tagName: isFilled ? 'md-filled-select' : 'md-outlined-select',
     elementClass: isFilled ? MdFilledSelect : MdOutlinedSelect,
@@ -26,9 +21,7 @@ function Select({
   });
 
   return (
-    <SelectElement
-      {...props}
-    >
+    <SelectElement className={className} {...props}>
       {icon && <md-icon slot="leading-icon">{icon}</md-icon>}
       {Array.isArray(options) &&
         options?.map((option) => (
@@ -45,6 +38,10 @@ function Select({
 }
 
 Select.propTypes = {
+  /**
+   * Styles classname
+   */
+  className: PropTypes.string,
   /**
    * If true, an error state will be displayed.
    */
@@ -130,6 +127,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  className: '',
   error: false,
   errorText: 'Please select an option.',
   icon: undefined,

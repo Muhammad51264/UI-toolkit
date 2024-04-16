@@ -14,14 +14,13 @@ HTMLDialogElement.prototype.close = jest.fn(function mock() {
 
 const closeHandler = jest.fn();
 
-const TestingComponent = () => {
+const TestingComponent = ({ ...args }) => {
   const dialogRef = useRef();
 
   return (
     <Dialog
       ref={dialogRef}
       onClose={closeHandler}
-      open
       aria-label="Test"
       headlineElement={<p data-testid="dialogHeadline">test dialog</p>}
       actionElement={
@@ -39,6 +38,7 @@ const TestingComponent = () => {
           </button>
         </>
       }
+      {...args}
     >
       <form
         id="form"
@@ -56,7 +56,7 @@ const TestingComponent = () => {
 
 describe('Dialog component', () => {
   it('renders with default props and functionality', async () => {
-    render(<TestingComponent />);
+    render(<TestingComponent open />);
 
     const dialogContainer = await screen.getByShadowRole('presentation');
     expect(dialogContainer).toBeInTheDocument();
@@ -73,5 +73,13 @@ describe('Dialog component', () => {
     await fireEvent.submit(form);
 
     expect(closeHandler).toBeCalledTimes(1);
+  });
+
+  it('renders as closed if not passed as prop', async () => {
+    render(<TestingComponent />);
+
+    const dialogContainer = await screen.getByShadowRole('presentation');
+    expect(dialogContainer).toBeInTheDocument();
+    expect(dialogContainer).not.toHaveAttribute('open');
   });
 });

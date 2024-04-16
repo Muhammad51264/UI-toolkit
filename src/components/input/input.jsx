@@ -26,15 +26,17 @@ const OutlinedInput = createComponent({
   },
 });
 
-const Input = forwardRef(({ leadingIcon, trailingIcon, className, ...props }, ref) => {
-  const Component = props.isFilled ? FilledInput : OutlinedInput;
-  return (
-    <Component {...props}>
-      {leadingIcon && <md-icon slot="leading-icon">{leadingIcon}</md-icon>}
-      {trailingIcon && <md-icon slot="trailing-icon">{trailingIcon}</md-icon>}
-    </Component>
-  );
-});
+const Input = forwardRef(
+  ({ leadingIcon, trailingIcon, className, ...props }, ref) => {
+    const Component = props.isFilled ? FilledInput : OutlinedInput;
+    return (
+      <Component {...props}>
+        {leadingIcon && <md-icon slot="leading-icon">{leadingIcon}</md-icon>}
+        {trailingIcon && <md-icon slot="trailing-icon">{trailingIcon}</md-icon>}
+      </Component>
+    );
+  }
+);
 
 Input.displayName = 'Input';
 
