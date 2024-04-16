@@ -27,8 +27,8 @@ const Template = (args) => (
   --md-sys-color-secondary: #625B71;
   --md-sys-color-surface-container-highest: #E6E0E9;
   --md-sys-color-outline-variant: #CAC4D0;
-  --md-sys-color-outline: #cac4d01f;
-  --md-ripple-hover-color: var(--md-sys-color-on-surface);
+  --md-sys-color-outline: rgb(121, 116, 126,0.32);
+  --md-ripple-hover-color: rgba(29, 27, 32, 0.15);
   --md-ripple-pressed-color: var(--md-sys-color-on-surface);
   --md-elevation-shadow-color:var(--md-sys-color-shadow);
   --md-sys-state-focus-indicator-outer-offset:2px;
@@ -47,8 +47,15 @@ const Template = (args) => (
   gap:0.1rem;
   margin-top: 1rem;
  }
+
+ .card-wrapper{
+  max-width: 35rem
+ }
  `}
     </style>
+
+    <div className='card-wrapper'>
+
     <Card {...args}>
       <div className="container">
         <h1>Headline</h1>
@@ -56,7 +63,7 @@ const Template = (args) => (
         <p
           style={{
             textAlign: 'left',
-            marginTop: '0.625rem',
+            margin: '0.625rem 0',
           }}
         >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate et
@@ -66,6 +73,8 @@ const Template = (args) => (
         </p>
       </div>
     </Card>
+
+    </div>
   </>
 );
 

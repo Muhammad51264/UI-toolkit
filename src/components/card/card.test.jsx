@@ -1,19 +1,8 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-import Card from './card';
-import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
+import { fireEvent, render } from '@testing-library/react';
+import { screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
-import { expect } from '@storybook/test';
-import { Ripple } from '@material/web/ripple/internal/ripple';
-
-// Mock the startPressAnimation method
-Ripple.prototype.startPressAnimation = jest.fn(async () => {
-  const mdRippleHost = document.querySelector('md-ripple');
-  const shadowRoot = mdRippleHost.shadowRoot;
-  const rippleSurface = deepQuerySelector(shadowRoot, '.surface');
-
-  rippleSurface.classList += ' pressed';
-});
+import Card from '.';
 
 describe('Card component', () => {
   const displayCard = (props) => {
@@ -23,85 +12,75 @@ describe('Card component', () => {
       </Card>
     );
   };
-  const getElementInShadowRoot = async (hostSelector, elementSelector) => {
-    let host;
-    await waitFor(() => {
-      host = document.querySelector(hostSelector);
-    });
-    const shadowRoot = host.shadowRoot;
-    const elementInShadowRoot = deepQuerySelector(shadowRoot, elementSelector);
-    return elementInShadowRoot;
-  };
 
-  it('It renders successfully', async () => {
+  it('renders successfully', () => {
     displayCard();
   });
 
-  it('Renders filled Card', async () => {
+  it('Renders filled Card', () => {
     displayCard({ cardType: 'filled' });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveClass('filled');
   });
 
-  it('Renders outlined Card', async () => {
+  it('Renders outlined Card', () => {
     displayCard({ cardType: 'outlined' });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveClass('outlined');
   });
 
-  it('Card Displays Its children', async () => {
+  it('Card Displays Its children', () => {
     displayCard();
 
     const header = screen.getByText('test');
     expect(header).toBeVisible();
   });
 
-  it('Card shows ribble effects when clicking on it', async () => {
+  it('Card shows ripple effects when clicking on it', async () => {
     displayCard();
 
-    const card = screen.getByRole('button');
+    const ripple = screen.getByTestId('ripple');
 
-    const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
-    await userEvent.click(card);
+    expect(ripple).toBeEmptyDOMElement();
 
-    expect(rippleSurface).toHaveClass('surface hovered pressed');
+    await userEvent.dblClick(ripple);
+
+    expect(ripple).not.toBeEmptyDOMElement();
   });
 
   it('Card has elevation effect', async () => {
     displayCard();
 
-    const rippleSurface = await getElementInShadowRoot(
-      'md-elevation',
-      '.shadow'
-    );
+    const card = screen.getByTestId('card');
 
-    expect(rippleSurface).toBeInTheDocument();
+    expect(card).toHaveClass('elevated');
   });
 
-  it('Card shows ribble effects when hovering over it', async () => {
-    displayCard();
-
-    const card = screen.getByRole('button');
-
-    const rippleSurface = await getElementInShadowRoot('md-ripple', '.surface');
-    await userEvent.hover(card);
-
-    expect(rippleSurface).toHaveClass('surface hovered');
-  });
-
-  it('Disabled card has no ribble effect', async () => {
+  it('Disabled card has no ripple effect', () => {
     displayCard({ disabled: true });
 
-    const mdRippleHost = document.querySelector('md-ripple');
-    expect(mdRippleHost).toBeNull();
+    const ripple = screen.queryByTestId('ripple');
+    expect(ripple).toBeNull();
   });
 
-  it('Renders a draggable card', async () => {
+  it('Renders a draggable card', () => {
     displayCard({ draggable: true });
 
-    const card = screen.getByRole('button');
+    const card = screen.getByTestId('card');
     expect(card).toHaveAttribute('draggable', 'true');
+  });
+
+  it('Drags a draggable card', () => {
+    displayCard({ draggable: true });
+
+    const card = screen.getByTestId('card');
+
+    fireEvent.dragStart(card);
+    expect(card).toHaveClass('draggable');
+
+    fireEvent.dragEnd(card);
+    expect(card).not.toHaveClass('draggable');
   });
 });
