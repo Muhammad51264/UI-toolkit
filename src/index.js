@@ -10,3 +10,4 @@ export { default as Radio } from './components/radio';
 export { default as Select } from './components/select';
 export { default as Snackbar } from './components/snackbar';
 export { default as Switch } from './components/switch';
+export { default as Tabs } from './components/tabs';
