@@ -1,0 +1,84 @@
+.loader {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circularPlace {
+  animation: rotate 2s linear infinite;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+.circularTrack {
+  stroke: var(--md-sys-color-primary-container-light);
+}
+
+.circularPath {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke: var(--md-sys-color-surface-tint-light);
+  animation: dash 2s ease-in-out infinite;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+}
+
+.barContainer {
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  margin: auto;
+  width: 300px;
+}
+
+.barTrack {
+  height: 4px;
+  background-color: var(--md-sys-color-primary-container-light);
+  width: 100%;
+  overflow: hidden;
+}
+
+.barPath {
+  animation: indeterminateAnimation 1s infinite linear;
+  background-color: var(--md-sys-color-surface-tint-light);
+  height: 100%;
+  transform-origin: 0% 50%;
+  width: 100%;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes indeterminateAnimation {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+  }
+}
