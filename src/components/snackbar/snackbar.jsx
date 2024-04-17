@@ -6,71 +6,79 @@ import Ripple from '../ripple';
 function Snackbar({
   action,
   actionClickEvent,
+  animationDuration,
   closeButton,
   closeButtonClickEvent,
-  isClosed,
   text,
   textMaxWidth,
+  minWidth,
   secondText,
   ...props
 }) {
-  const [isSnackbarClosed, setIsSnackbarClosed] = useState(isClosed);
+  const [isClosing, setIsClosing] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    setIsSnackbarClosed(false);
-    setIsVisible(true);
-  }, [isClosed]);
+    if (!animationDuration) return;
+    setIsClosing(true);
 
-  useEffect(() => {
-    if (!isSnackbarClosed) return;
-    setTimeout(() => setIsVisible(false), 200);
-  }, [isSnackbarClosed]);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, animationDuration);
+  }, [animationDuration]);
 
   return (
     <>
       {isVisible && (
         <div
           data-testid="snackbar"
-          className={`${styles.container} ${secondText && styles.secondText} ${isSnackbarClosed && styles.closed}`}
+          id="snackbar"
+          className={`${styles.container} ${isClosing ? styles.closed : styles.visible} ${secondText && styles.secondText}`}
           {...props}
+          style={{
+            minWidth,
+            transition: `opacity ${animationDuration / 1000}s ease-out`,
+          }}
         >
           <div
             className={styles.textContainer}
             style={{ maxWidth: textMaxWidth }}
           >
             <div className={styles.text}>{text}</div>
-            {/* {secondText && <div className={styles.text}>{secondText}</div>} */}
+            {secondText && <div className={styles.text}>{secondText}</div>}
           </div>
-          {action && (
-            <button className={styles.action} onClick={actionClickEvent}>
-              <Ripple />
 
-              {action}
-            </button>
-          )}
+          <div className={styles['btn-container']}>
+            {action && (
+              <button className={styles.action} onClick={actionClickEvent}>
+                <Ripple />
 
-          {closeButton && (
-            <button
-              className={styles.close}
-              onClick={() => {
-                closeButtonClickEvent();
-                setIsSnackbarClosed(true);
-              }}
-              data-testid="close"
-            >
-              <Ripple />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24"
-                viewBox="0 -960 960 960"
-                width="24"
-                className={styles.icon}
+                {action}
+              </button>
+            )}
+
+            {closeButton && (
+              <button
+                className={styles.close}
+                onClick={() => {
+                  setIsVisible(false);
+                  if (closeButtonClickEvent) closeButtonClickEvent();
+                }}
+                data-testid="close"
               >
-                <path d="M259-198.348 199.348-259l220-221-220-221L259-761.652l221 221 221-221L760.652-701l-220 221 220 221L701-198.348l-221-221-221 221Z" />
-              </svg>
-            </button>
-          )}
+                <Ripple />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                  className={styles.icon}
+                >
+                  <path d="M259-198.348 199.348-259l220-221-220-221L259-761.652l221 221 221-221L760.652-701l-220 221 220 221L701-198.348l-221-221-221 221Z" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
       )}
     </>
@@ -87,6 +95,10 @@ Snackbar.propTypes = {
    */
   actionClickEvent: PropTypes.func,
   /**
+   * animationDuration: animation duration
+   */
+  animationDuration: PropTypes.number,
+  /**
    * closeButton: close button
    */
   closeButton: PropTypes.bool,
@@ -94,10 +106,6 @@ Snackbar.propTypes = {
    * closeButtonClickEvent: close button event
    */
   closeButtonClickEvent: PropTypes.func,
-  /**
-   * isClosed: determine if snackbar is closed or not
-   */
-  isClosed: PropTypes.bool,
   /**
    * secondText: snackbar second text
    */
@@ -110,17 +118,22 @@ Snackbar.propTypes = {
    * textMaxWidth: max width of the text container
    */
   textMaxWidth: PropTypes.string,
+  /**
+   * minWidth: minWidth width of the snackbar container
+   */
+  minWidth: PropTypes.string,
 };
 
 Snackbar.defaultProps = {
   action: '',
   actionClickEvent: undefined,
+  animationDuration: 3000,
   closeButton: false,
   closeButtonClickEvent: undefined,
-  isClosed: false,
   text: 'default text',
-  textMaxWidth: '37.5rem',
+  textMaxWidth: 'auto',
   secondText: '',
+  minWidth: 'auto',
 };
 
 export default Snackbar;

@@ -8,6 +8,7 @@
   display: flex;
   max-height: 4.25rem;
   min-height: 3rem;
+  justify-content: space-between;
 }
 
 .textContainer {
@@ -26,9 +27,17 @@
   padding: 0 1rem;
 }
 
+.secondText {
+  height: 4.25rem;
+}
+
 .closed {
   opacity: 0;
-  transition: opacity 0.2s ease-out;
+  /* transition: opacity 3s ease-out; */
+}
+
+.visible{
+  opacity: 1;
 }
 
 .action,
@@ -63,4 +72,9 @@
 .icon {
   display: flex;
   fill: var(--md-sys-color-inverse-on-surface);
+}
+
+.btn-container{
+  display: flex;
+  align-items: center;
 }

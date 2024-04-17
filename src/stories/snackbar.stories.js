@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Snackbar from '../components/snackbar';
 import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
@@ -15,7 +15,18 @@ export default {
 };
 
 const Template = (args) => {
-  const [isClosed, setIsClosed] = useState(false);
+  const [addedSnackbar, setAddedSnackbars] = useState(false);
+
+  useEffect(() => {
+    let enableButton;
+    if (addedSnackbar) {
+      enableButton = setTimeout(
+        () => setAddedSnackbars(false),
+        args.animationDuration ?? 3000
+      );
+    }
+    return () => clearTimeout(enableButton);
+  }, [addedSnackbar]);
   return (
     <>
       <style>
@@ -37,10 +48,32 @@ const Template = (args) => {
         `}
       </style>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-        <Snackbar {...args} isClosed={isClosed} />
-        <button onClick={() => setIsClosed((prev) => !prev)}>
-          show Snackbar
+        <Snackbar {...args} animationDuration={0} />
+        <button
+          onClick={() => setAddedSnackbars(true)}
+          disabled={addedSnackbar}
+        >
+          Add Snackbar
         </button>
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '10%',
+            width: '30vw',
+            left: '5%',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.625rem',
+          }}
+        >
+          {addedSnackbar && (
+            <Snackbar
+              {...args}
+              closeButtonClickEvent={() => setAddedSnackbars(false)}
+            />
+          )}
+        </div>
       </div>
     </>
   );
@@ -54,6 +87,12 @@ const primary = {
 export const Default = Template.bind({});
 Default.args = {
   ...primary,
+};
+
+export const customMinWidth = Template.bind({});
+customMinWidth.args = {
+  ...primary,
+  minWidth: '18.75rem',
 };
 
 export const WithActionButton = Template.bind({});
@@ -84,6 +123,18 @@ TwoLineSnackBar.args = {
   ...primary,
   action: 'Action',
   textMaxWidth: '25rem',
+  text: 'first line',
+  secondText: 'second line',
+  actionClickEvent: () => console.log('action'),
+  closeButton: true,
+  closeButtonClickEvent: () => console.log('close'),
+};
+
+export const WithCustomTextMaxWidth = Template.bind({});
+WithCustomTextMaxWidth.args = {
+  ...primary,
+  action: 'Action',
+  textMaxWidth: '25rem',
   text: (
     <div
       style={{
@@ -100,4 +151,15 @@ TwoLineSnackBar.args = {
   actionClickEvent: () => console.log('action'),
   closeButton: true,
   closeButtonClickEvent: () => console.log('close'),
+};
+
+export const WithCustomAnimationDuration = Template.bind({});
+WithCustomAnimationDuration.args = {
+  ...primary,
+  ...primary,
+  action: 'Action',
+  text: 'first line',
+  closeButton: true,
+  closeButtonClickEvent: () => console.log('close'),
+  animationDuration: 7000,
 };
