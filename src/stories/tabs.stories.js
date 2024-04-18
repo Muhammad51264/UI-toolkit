@@ -1,9 +1,8 @@
 import React from 'react';
-import { SearchIcon, ClearIcon } from '@storybook/icons';
 import Tabs from '../components/tabs';
 
 export default {
-  title: 'tabs',
+  title: 'Tabs',
   component: Tabs,
 };
 
@@ -37,14 +36,31 @@ Default.args = {
     {
       'aria-controls': 'tab1',
       content: <div>tab 1</div>,
-      icon: <SearchIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"
+          />
+        </svg>
+      ),
       id: 'firsttab',
       text: 'tab1',
     },
     {
       'aria-controls': 'tab2',
       content: <div>tab 2</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+        </svg>
+      ),
       id: 'secondtab',
       text: 'tab2',
     },
@@ -59,13 +75,30 @@ WithIconsOnly.args = {
     {
       'aria-controls': 'tab1',
       content: <div>tab 1</div>,
-      icon: <SearchIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"
+          />
+        </svg>
+      ),
       id: 'firsttab',
     },
     {
       'aria-controls': 'tab2',
       content: <div>tab 2</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+        </svg>
+      ),
       id: 'secondtab',
     },
   ],
@@ -79,14 +112,31 @@ InlineIcons.args = {
     {
       'aria-controls': 'tab1',
       content: <div>tab 1</div>,
-      icon: <SearchIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"
+          />
+        </svg>
+      ),
       id: 'firsttab',
       text: 'label1',
     },
     {
       'aria-controls': 'tab2',
       content: <div>tab 2</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+        </svg>
+      ),
       id: 'secondtab',
       text: 'label2',
     },
@@ -102,13 +152,30 @@ CustomActiveIndex.args = {
     {
       'aria-controls': 'tab1',
       content: <div>tab 1</div>,
-      icon: <SearchIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"
+          />
+        </svg>
+      ),
       id: 'firsttab',
     },
     {
       'aria-controls': 'tab2',
       content: <div>tab 2</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+        </svg>
+      ),
       id: 'secondtab',
     },
   ],
@@ -142,21 +209,49 @@ SecondaryTabs.args = {
     {
       'aria-controls': 'tab1',
       content: <div>tab 1</div>,
-      icon: <SearchIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"
+          />
+        </svg>
+      ),
       id: 'firsttab',
       text: 'tab1',
     },
     {
       'aria-controls': 'tab2',
       content: <div>tab 2</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+        </svg>
+      ),
       id: 'secondtab',
       text: 'tab2',
     },
     {
       'aria-controls': 'tab3',
       content: <div>tab 3</div>,
-      icon: <ClearIcon />,
+      icon: (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M8 6h8M6 10h12M8 14h8M6 18h12"
+          />
+        </svg>
+      ),
+
       id: 'thirdtab',
       text: 'tab3',
     },

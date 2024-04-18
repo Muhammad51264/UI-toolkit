@@ -32,7 +32,9 @@ const Tab = ({
         role="presentation"
         className={`${styles.content} ${isStacked} ${withIcon} ${withIconOnly} ${variantClass}`}
       >
-        {icon && <slot>{icon}</slot>}
+        {icon && (
+          <slot className={`${styles.icon} ${variantClass}`}>{icon}</slot>
+        )}
         <slot>{text}</slot>
         <div className={styles.indicator} />
       </div>

@@ -32,7 +32,6 @@
   line-height: var(--md-sys-typescale-title-small-line-height);
   outline: none;
   overflow: hidden;
-  padding: 0 1rem;
   position: relative;
   user-select: none;
   vertical-align: middle;
@@ -86,7 +85,7 @@ slot * {
   cursor: pointer;
 }
 
-.button:hover .iconWrapper {
+.button:hover .icon {
   color: var(--md-sys-color-on-surface-light);
 }
 
@@ -94,7 +93,7 @@ slot * {
   color: var(--md-sys-color-on-surface-light);
 }
 
-.button:focus .iconWrapper {
+.button:focus .icon {
   color: var(--md-sys-color-on-surface-light);
 }
 
@@ -102,7 +101,7 @@ slot * {
   color: var(--md-sys-color-on-surface-light);
 }
 
-.button:active .iconWrapper {
+.button:active .icon {
   color: var(--md-sys-color-on-surface-light);
 }
 
@@ -110,19 +109,19 @@ slot * {
   opacity: 1;
 }
 
-.active {
+.active .content:not(.secondary) {
   color: var(--md-sys-color-primary-light);
 }
 
-.active .iconWrapper {
+.active .icon:not(.secondary) {
   color: var(--md-sys-color-primary-light);
 }
 
-.active:hover {
-  color: var(--md-sys-color-primary-light);
+.active .content.secondary:hover {
+  font-weight: bold;
 }
 
-.active:hover .iconWrapper {
+.active .icon:not(.secondary):hover .icon {
   color: var(--md-sys-color-primary-light);
 }
 
@@ -130,7 +129,7 @@ slot * {
   color: var(--md-sys-color-primary-light);
 }
 
-.active:focus .iconWrapper {
+.active:focus .icon {
   color: var(--md-sys-color-primary-light);
 }
 
@@ -138,7 +137,7 @@ slot * {
   color: var(--md-sys-color-primary-light);
 }
 
-.active:active .iconWrapper {
+.active:active .icon {
   color: var(--md-sys-color-primary-light);
 }
 
@@ -149,4 +148,19 @@ slot * {
 
 .content.secondary {
   flex: 1;
+}
+
+.icon {
+  color: var(--md-sys-color-on-surface-variant-light);
+  display: inline-flex;
+  fill: currentcolor;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  width: 1.5rem;
+  writing-mode: horizontal-tb;
+}
+
+.content.secondary .indicator {
+  height: 0.125rem;
 }
