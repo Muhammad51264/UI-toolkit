@@ -51,8 +51,8 @@ function Ripple({ duration }) {
               className={styles.element}
               key={'span' + index}
               style={{
-                top: ripple.y,
-                left: ripple.x,
+                top: ripple.y || 0,
+                left: ripple.x || 0,
                 width: ripple.size,
                 height: ripple.size,
                 animationDuration: `${duration}ms`,
