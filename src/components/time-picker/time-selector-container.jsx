@@ -59,6 +59,7 @@ function TimeSelectorContainer() {
                   type="number"
                   name={timeSelector.type}
                   id={timeSelector.type}
+                  data-testid={timeSelector.label}
                   className={`${styles['time-selector']} ${twentyFourHourMode ? styles['twenty-four-hour-mode'] : ''}
                    ${isClockHidden ? styles['input-hidden'] : ''}`}
                   value={defaultTime[timeSelector.type]}

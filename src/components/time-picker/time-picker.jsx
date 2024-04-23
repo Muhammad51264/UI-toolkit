@@ -22,11 +22,9 @@ function TimePicker({
   const [isClosed, setIsClosed] = useState(true);
 
   useEffect(() => {
-    const timeValue = `${time.hour}:${time.min} ${!twentyFourHourMode ? period : ''}`;
-    if (onTimeChange) {
-      onTimeChange(timeValue);
-    }
-  }, [time, onTimeChange]);
+    const timeValue = `${time.hour}:${time.min}${!twentyFourHourMode ? ` ${period}` : ''}`;
+    onTimeChange(timeValue);
+  }, [time, onTimeChange, period, setPeriod, twentyFourHourMode]);
 
   return (
     <>
@@ -116,7 +114,7 @@ TimePicker.defaultProps = {
   isHorizontal: false,
   twentyFourHourMode: false,
   onTimeChange: () => {},
-  onAccept: () => {},
+  onAccept: undefined,
 };
 
 export default TimePicker;

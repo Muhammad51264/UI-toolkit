@@ -16,6 +16,7 @@ function ClockContainer() {
       ${isHorizontal ? styles['clock-container-horizontal'] : ''}
       ${isClockHidden && isHorizontal ? styles['hidden-clock-horizontal'] : ''}
       `}
+      data-testid="analog-clock"
     >
       <div
         className={`${styles.clock}`}
@@ -41,6 +42,7 @@ function ClockContainer() {
                   left,
                   transform: 'translate(-50%, -50%)',
                 }}
+                data-testid="analog-clock-label"
               >
                 <span
                   className={`${hour.value === parseInt(time.hour, 10) && styles['clock-chosen']}`}

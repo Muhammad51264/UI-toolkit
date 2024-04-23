@@ -15,10 +15,8 @@ function OptionsContainer() {
   } = useTimeContext();
 
   const handleOkClick = () => {
-    const timeValue = `${time.hour}:${time.min} ${!twentyFourHourMode ? period : ''}`;
-    if (onAccept) {
-      onAccept(timeValue);
-    }
+    const timeValue = `${time.hour}:${time.min}${!twentyFourHourMode ? ` ${period}` : ''}`;
+    onAccept(timeValue);
   };
   return (
     <div className={styles['options-container']}>

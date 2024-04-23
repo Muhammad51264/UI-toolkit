@@ -12,6 +12,7 @@ function PeriodSelector() {
       ${isHorizontal && !isClockHidden ? styles['period-container-horizontal'] : ''}
       ${isClockHidden ? styles['period-container-horizontal-hidden'] : ''}
       `}
+      data-testid="period"
     >
       {TIME_PERIODS.map((timePeriod) => (
         <button
