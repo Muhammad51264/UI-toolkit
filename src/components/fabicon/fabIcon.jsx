@@ -35,10 +35,25 @@ FabIcon.defaultProps = {
 };
 
 FabIcon.propTypes = {
+  /**
+   * Icon elements
+   */
   children: PropTypes.element,
+  /**
+   * Text label for the FAB icon.
+   */
   label: PropTypes.string,
+  /**
+   * Aria label for accessibility
+   */
   ariaLabel: PropTypes.string,
+  /**
+   * Size variant of the FAB icon.
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   *  Variant style of the FAB icon.
+   */
   variant: PropTypes.oneOf(['surface', 'primary', 'secondary', 'tertiary']),
 };
 
