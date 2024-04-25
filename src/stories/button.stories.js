@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import Button from '../components/button';
 import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
@@ -15,27 +14,59 @@ export default {
   ],
 };
 
-const Template = (args) => <Button {...args}> Hello </Button>;
+const Template = (args) => (
+  <>
+    <style>
+      {`
+        :root{
+          --md-sys-color-on-primary: #FFFFFF;
+          --md-sys-color-primary: #6750A4;
+          --md-sys-color-outline: #79747E;
+          --md-sys-color-secondary-container: #E8DEF8;
+          --md-sys-color-on-secondary-container: #1D192B;
+          --md-sys-color-secondary: #625B71;
+          --md-sys-state-focus-indicator-thickness: 3px;
+          --md-sys-state-focus-indicator-outer-offset: 2px;
+          --md-sys-color-on-surface: 29, 27, 32;
+          --md-sys-typescale-label-large-tracking: 0.5pt;
+          --md-sys-shape-corner-full: 20px;
+          --md-sys-color-surface-container-low: #F7F2FA;
+          --md-sys-typescale-label-large-font: 20pt;
+          --md-sys-typescale-label-large-weight: 500;
+          --md-sys-typescale-label-large-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      `}
+    </style>
+    <Button {...args} />
+  </>
+);
+
+const primary = {
+  icon: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 -960 960 960"
+      width="24"
+    >
+      <path d="M439.5-440H201.869v-81H439.5v-237.631h81V-521h237.631v81H520.5v237.631h-81V-440Z" />
+    </svg>
+  ),
+  disabled: false,
+  variant: 'filled',
+  text: 'Button',
+};
 
 export const Filled = Template.bind({});
 Filled.args = {
-  hasIcon: true,
-  icon: (
-    <svg slot="icon" viewBox="0 0 48 48">
-      <path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
-    </svg>
-  ),
-  isDisabled: false,
-  variant: 'filled',
+  ...primary,
   onClick: () => {
     console.log('Filled clicked');
   },
-  trailingIcon: true,
 };
 
 export const Elevated = Template.bind({});
 Elevated.args = {
-  isDisabled: false,
+  ...primary,
   variant: 'elevated',
   onClick: () => {
     console.log('Elevated clicked');
@@ -44,12 +75,7 @@ Elevated.args = {
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  icon: (
-    <svg slot="icon" viewBox="0 0 48 48">
-      <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
-    </svg>
-  ),
-  isDisabled: false,
+  ...primary,
   variant: 'outlined',
   onClick: () => {
     console.log('Outlined clicked');
@@ -58,8 +84,7 @@ Outlined.args = {
 
 export const FilledTonal = Template.bind({});
 FilledTonal.args = {
-  isDisabled: false,
-  hasIcon: true,
+  ...primary,
   variant: 'tonal',
   onClick: () => {
     console.log('Tonal clicked');
@@ -68,13 +93,27 @@ FilledTonal.args = {
 
 export const TextButton = Template.bind({});
 TextButton.args = {
-  isDisabled: false,
-  hasIcon: true,
-  href: 'www.google.com',
-  target: '_blank',
-  variant: 'text',
-  type: 'submit',
+  ...primary,
+  variant: 'textType',
   onClick: () => {
     console.log('Text button clicked');
   },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...primary,
+  disabled: true,
+};
+
+export const Draggable = Template.bind({});
+Draggable.args = {
+  ...primary,
+  draggable: true,
+};
+
+export const WithoutIcon = Template.bind({});
+Draggable.args = {
+  ...primary,
+  icon: '',
 };
