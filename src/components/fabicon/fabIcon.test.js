@@ -1,10 +1,10 @@
-import '@material/web/icon/icon.js';
-import { render, fireEvent, screen } from '@testing-library/react';
-import FabIcon from './fabIcon.jsx';
+import '@material/web/icon/icon';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
+import FabIcon from './fabIcon.jsx';
 
-const renderFabIcon = (props) => {
-  return render(
+const renderFabIcon = (props) =>
+  render(
     <FabIcon {...props}>
       <svg data-testid="test svg">
         <path d="M0 0h24v24H0z" fill="none" />
@@ -12,7 +12,6 @@ const renderFabIcon = (props) => {
       </svg>
     </FabIcon>
   );
-};
 
 describe('Input component', () => {
   it('renders with default props and functionality', async () => {

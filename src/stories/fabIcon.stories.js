@@ -1,8 +1,6 @@
 import React from 'react';
+import { SearchIcon } from '@storybook/icons';
 import FabIcon from '../components/fabicon';
-import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
-import Fabicon from '../components/fabicon';
-import { SearchIcon, ClearIcon } from '@storybook/icons';
 
 export default {
   title: 'fabIcon',
@@ -38,7 +36,7 @@ const Template = (args) => (
           --md-sys-typescale-label-medium-font-weight: 500px;
       `}
     </style>
-    <Fabicon {...args}></Fabicon>
+    <FabIcon {...args}></FabIcon>
   </>
 );
 

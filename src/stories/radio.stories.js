@@ -30,8 +30,6 @@ const Template = (args) => (
 const primary = {
   checked: false,
   disabled: false,
-  onChange: () => console.log('change'),
-  onInput: () => console.log('input'),
 };
 
 export const Default = Template.bind({});

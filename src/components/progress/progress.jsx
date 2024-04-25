@@ -37,7 +37,13 @@ Progress.defaultProps = {
 };
 
 Progress.propTypes = {
+  /**
+   * the variant of the progressbar: linear or circular
+   */
   variant: PropTypes.oneOf(['linear', 'circular']),
+  /**
+   * passed className to progressbar's container
+   */
   className: PropTypes.string,
 };
 

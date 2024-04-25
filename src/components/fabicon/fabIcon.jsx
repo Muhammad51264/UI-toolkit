@@ -3,14 +3,22 @@ import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 import Ripple from '../ripple';
 
-const FabIcon = ({ ariaLabel, children, label, size, variant, ...props }) => {
+const FabIcon = ({
+  ariaLabel,
+  children,
+  className,
+  label,
+  size,
+  variant,
+  ...props
+}) => {
   const sizeClass = size !== 'medium' ? styles[size] : '';
   const labelClass = label ? styles.extended : '';
   const variantClass = variant !== 'surface' ? styles[variant] : '';
 
   return (
     <button
-      className={`${styles.fab} ${sizeClass} ${labelClass} ${variantClass}`}
+      className={`${styles.fab} ${sizeClass} ${labelClass} ${variantClass} ${styles[className]}`}
       aria-label={ariaLabel}
       role="button"
       {...props}
@@ -29,16 +37,37 @@ const FabIcon = ({ ariaLabel, children, label, size, variant, ...props }) => {
 FabIcon.defaultProps = {
   ariaLabel: '',
   children: null,
+  className: '',
   label: '',
   size: 'medium',
   variant: 'surface',
 };
 
 FabIcon.propTypes = {
-  children: PropTypes.element,
-  label: PropTypes.string,
+  /**
+   * Aria label for accessibility
+   */
   ariaLabel: PropTypes.string,
+  /**
+   * Icon elements
+   */
+  children: PropTypes.element,
+  /**
+   * Styles classname
+   */
+  className: PropTypes.string,
+  /**
+   * Text label for the FAB icon.
+   */
+
+  label: PropTypes.string,
+  /**
+   * Size variant of the FAB icon.
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   *  Variant style of the FAB icon.
+   */
   variant: PropTypes.oneOf(['surface', 'primary', 'secondary', 'tertiary']),
 };
 

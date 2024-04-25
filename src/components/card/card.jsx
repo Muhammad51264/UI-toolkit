@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 import Ripple from '../ripple';
-function Card({ cardType, children, disabled, ...props }) {
+
+function Card({ cardType, children, className, disabled, ...props }) {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragStart = () => {
@@ -18,7 +19,7 @@ function Card({ cardType, children, disabled, ...props }) {
       <div
         data-testid="card"
         className={`${styles['card-wrapper']} ${styles[cardType]} ${styles['card-wrapper']}
-         ${isDragging && styles.draggable} ${disabled && styles.disabled} `}
+         ${isDragging && styles.draggable} ${disabled && styles.disabled}  ${styles[className]}`}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         {...props}
@@ -43,6 +44,11 @@ Card.propTypes = {
   children: PropTypes.node,
 
   /**
+   * Component classname
+   */
+  className: PropTypes.string,
+
+  /**
    * If true, the card is disabled
    */
   disabled: PropTypes.bool,
@@ -60,6 +66,7 @@ Card.propTypes = {
 Card.defaultProps = {
   cardType: 'elevated',
   children: null,
+  className: '',
   disabled: false,
   draggable: false,
   onClick: null,
