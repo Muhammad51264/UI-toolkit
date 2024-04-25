@@ -8,4 +8,5 @@ export { default as FabIcon } from './components/fabicon';
 export { default as Input } from './components/input';
 export { default as Radio } from './components/radio';
 export { default as Select } from './components/select';
+export { default as Snackbar } from './components/snackbar';
 export { default as Switch } from './components/switch';
