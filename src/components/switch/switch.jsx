@@ -13,39 +13,32 @@ const SwitchComponent = createComponent({
   },
 });
 
-const Switch = ({
-  ariaLabel,
-  className,
-  label,
-  showOnlySelectedIcon,
-  ...props
-}) =>
-  label ? (
+const Switch = ({ className, ...props }) =>
+  props.label ? (
     <>
-      <label htmlFor={label}> {label}</label>
+      <label htmlFor={props.label}> {props.label}</label>
       <SwitchComponent
-        aria-label={ariaLabel}
         className={className}
-        {...(showOnlySelectedIcon
-          ? { 'show-only-selected-icon': showOnlySelectedIcon }
+        id={props.label}
+        {...(props.showOnlySelectedIcon
+          ? { 'show-only-selected-icon': props.showOnlySelectedIcon }
           : {})}
         {...props}
       />
     </>
   ) : (
     <SwitchComponent
-      aria-label={ariaLabel}
       className={className}
-      {...(showOnlySelectedIcon
-        ? { 'show-only-selected-icon': showOnlySelectedIcon }
+      {...(props.showOnlySelectedIcon
+        ? { 'show-only-selected-icon': props.showOnlySelectedIcon }
         : {})}
       {...props}
     />
   );
 
 Switch.defaultProps = {
-  ariaLabel: '',
-  change: undefined,
+  'aria-label': '',
+  change: null,
   className: '',
   disabled: false,
   icons: false,
@@ -62,7 +55,7 @@ Switch.propTypes = {
   /**
    * Switch aria label
    */
-  ariaLabel: PropTypes.string,
+  'aria-label': PropTypes.string,
   /**
    * Function to be excuted when whenever selected changes due to user interaction (bubbles and composed).
    */

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 import Ripple from '../ripple';
+
 function Chip({
   avatarIcon,
   chipType,
+  className,
   disabled,
   elevated,
   label,
@@ -26,7 +28,7 @@ function Chip({
     <>
       <div
         className={`${styles.container} ${styles[chipType]} ${elevated && styles.elevated} 
-        ${disabled && styles.disabled} ${selected && styles.selected} ${isDragging && styles.dragged}`}
+        ${disabled && styles.disabled} ${selected && styles.selected} ${isDragging && styles.dragged} ${styles[className]}`}
         tabIndex={disabled ? -1 : 0}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
@@ -105,6 +107,10 @@ Chip.propTypes = {
    */
   chipType: PropTypes.oneOf(['assist', 'filter', 'input', 'suggestion']),
   /**
+   * Component classname
+   */
+  className: PropTypes.string,
+  /**
    * If true, the chip will be disabled.
    */
   disabled: PropTypes.bool,
@@ -141,6 +147,7 @@ Chip.propTypes = {
 Chip.defaultProps = {
   avatarIcon: '',
   chipType: 'assist',
+  className: '',
   disabled: false,
   draggable: false,
   elevated: false,

@@ -1,12 +1,10 @@
-import '@material/web/icon/icon.js';
+import '@material/web/icon/icon';
 import { render, fireEvent } from '@testing-library/react';
 import { screen, deepQuerySelector } from 'shadow-dom-testing-library';
-import Input from './input.jsx';
 import React from 'react';
+import Input from './input.jsx';
 
-const renderInput = (props) => {
-  return render(<Input {...props} />);
-};
+const renderInput = (props) => render(<Input {...props} />);
 
 describe('Input component', () => {
   it('renders with default props and functionality', async () => {
@@ -32,7 +30,7 @@ describe('Input component', () => {
     expect(filledInput).toBeInTheDocument();
   });
 
-  it('renders a leading Icon if provided ', async () => {
+  it('renders a leading Icon if provided', async () => {
     renderInput({
       ariaLabel: 'Test Switch',
       hasLeadingIcon: true,
@@ -44,7 +42,7 @@ describe('Input component', () => {
     expect(iconElement).toHaveAttribute('slot', 'leading-icon');
   });
 
-  it('renders a trailing Icon if provided ', async () => {
+  it('renders a trailing Icon if provided', async () => {
     renderInput({
       ariaLabel: 'Test Switch',
       hasTrailingIcon: true,

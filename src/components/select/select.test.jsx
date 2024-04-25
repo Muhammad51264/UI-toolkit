@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import Select from './select';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
 import { expect, userEvent } from '@storybook/test';
+import Select from './select.jsx';
 
 describe('Select component', () => {
   const openMenu = jest.fn();
@@ -104,7 +104,7 @@ describe('Select component', () => {
   });
 
   it('Select supporting text is visible', async () => {
-    renderSelect({ supportingText: 'test' });
+    renderSelect({ 'supporting-text': 'test' });
 
     const selectContainer = await getSelectContainer();
 
@@ -112,7 +112,7 @@ describe('Select component', () => {
   });
 
   it('Select error text is visible', async () => {
-    renderSelect({ error: true, errorText: 'test' });
+    renderSelect({ error: true, 'error-text': 'test' });
 
     const selectContainer = await getSelectContainer();
 
@@ -171,5 +171,3 @@ describe('Select component', () => {
     });
   });
 });
-
-

@@ -13,31 +13,27 @@ const RadioElement = createComponent({
   },
 });
 
-function Radio({ ...props }) {
-  return <RadioElement {...props} />;
+function Radio({ className, ...props }) {
+  return <RadioElement className={className} {...props} />;
 }
 
 Radio.propTypes = {
   /**
-   * The value of the radio input.
-   */
-  value: PropTypes.string,
-
-  /**
    * If true, the radio input will be checked.
    */
   checked: PropTypes.bool,
-
+  /**
+   * Styles className
+   */
+  className: PropTypes.string,
   /**
    * If true, the radio input will be disabled.
    */
   disabled: PropTypes.bool,
-
   /**
    * The name of the radio input.
    */
   name: PropTypes.string,
-
   /**
    * Function called when the radio input value changes.
    */
@@ -47,15 +43,20 @@ Radio.propTypes = {
    * Function called when the radio input value is being input.
    */
   onInput: PropTypes.func,
+  /**
+   * The value of the radio input.
+   */
+  value: PropTypes.string,
 };
 
 Radio.defaultProps = {
-  value: '',
   checked: false,
+  className: '',
   disabled: false,
   name: '',
   onChange: undefined,
   onInput: undefined,
+  value: '',
 };
 
 export default Radio;
