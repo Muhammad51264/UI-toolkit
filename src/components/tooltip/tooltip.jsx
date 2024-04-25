@@ -1,10 +1,11 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from './styles.module.css';
 
 const ToolTip = ({
   className,
   firstActionButton,
+  persistent,
   position,
   secondActionButton,
   subhead,
@@ -29,9 +30,11 @@ const ToolTip = ({
   };
 
   const handleContainerLeave = () => {
-    timerRef.current = setTimeout(() => {
-      setTooltipState((prevState) => ({ ...prevState, display: false }));
-    }, 1500);
+    if (!persistent) {
+      timerRef.current = setTimeout(() => {
+        setTooltipState((prevState) => ({ ...prevState, display: false }));
+      }, 1500);
+    }
   };
 
   const handleTooltipHover = () => {
@@ -40,16 +43,41 @@ const ToolTip = ({
   };
 
   const handleTooltipLeave = () => {
-    timerRef.current = setTimeout(() => {
-      setTooltipState((prevState) => ({ ...prevState, isHovered: false }));
-    }, 1500);
+    if (!persistent) {
+      timerRef.current = setTimeout(() => {
+        setTooltipState((prevState) => ({ ...prevState, isHovered: false }));
+      }, 1500);
+    }
   };
+
+  useEffect(() => {
+    // Function to handle click outside
+    const handleClickOutside = (event) => {
+      if (tooltipState.display) {
+        const tooltipElement = document.querySelector(
+          `.${style.tooltipWrapper}`
+        );
+        if (tooltipElement && !tooltipElement.contains(event.target)) {
+          setTooltipState((prevState) => ({ ...prevState, display: false }));
+        }
+      }
+    };
+
+    // Adding event listener
+    document.addEventListener('click', handleClickOutside);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [tooltipState.display]);
 
   return (
     <div
       className={style.tooltipContainer}
       onMouseOver={handleContainerHover}
       onMouseLeave={handleContainerLeave}
+      data-testid="tooltipContainer"
     >
       <div className={style.tooltipWrapper}>
         <div
@@ -81,6 +109,7 @@ ToolTip.defaultProps = {
   className: '',
   firstActionButton: null,
   position: 'top',
+  persistent: false,
   secondActionButton: null,
   subhead: '',
   text: '',
@@ -89,7 +118,7 @@ ToolTip.defaultProps = {
 
 ToolTip.propTypes = {
   /**
-   * className that is passed to the component
+   * ClassName that is passed to the component
    */
   className: PropTypes.string,
   /**
@@ -110,6 +139,10 @@ ToolTip.propTypes = {
     'bottomLeft',
   ]),
   /**
+   * If the tooltip should be persistent or not
+   */
+  persistent: PropTypes.bool,
+  /**
    * Second button in the rich tooltip
    */
   secondActionButton: PropTypes.element,
@@ -122,7 +155,7 @@ ToolTip.propTypes = {
    */
   text: PropTypes.string,
   /**
-   * the variant of the tooltip: plain or rich
+   * The variant of the tooltip: plain or rich
    */
   variant: PropTypes.oneOf(['plain', 'rich']),
 };

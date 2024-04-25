@@ -93,7 +93,7 @@ export const Rich = Template.bind({});
 Rich.args = {
   firstActionButton: <Button variant="text">Click</Button>,
   secondActionButton: <Button variant="text">Click</Button>,
-  position: 'topRight',
+  position: 'bottomRight',
   subhead: 'Plain tooltips',
   text: "Plain tooltips briefly describe a UI element. They're best used for labelling UI elements with no text, like icon-only buttons and fields.",
   variant: 'rich',
