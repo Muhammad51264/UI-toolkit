@@ -15,18 +15,7 @@ export default {
   ],
 };
 
-const Template = (props) => (
-  <>
-    <style>
-      {`
-        :root{
-          --md-sys-color-outline-variant-light: #CAC4D0;
-        }
-      `}
-    </style>
-    <Divider {...props} />
-  </>
-);
+const Template = (props) => <Divider {...props} />;
 
 export const Default = Template.bind({});
 

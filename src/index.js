@@ -1,3 +1,4 @@
+export { default as Badges } from './components/badges';
 export { default as Button } from './components/button';
 export { default as Card } from './components/card';
 export { default as CheckBox } from './components/checkbox';
@@ -6,6 +7,7 @@ export { default as Dialog } from './components/dialog';
 export { default as Divider } from './components/divider';
 export { default as FabIcon } from './components/fabicon';
 export { default as Input } from './components/input';
+export { default as Progress } from './components/progress';
 export { default as Radio } from './components/radio';
 export { default as Select } from './components/select';
 export { default as Snackbar } from './components/snackbar';

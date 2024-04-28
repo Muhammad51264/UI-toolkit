@@ -1,22 +1,22 @@
 import React from 'react';
 import Badges from '../components/badges';
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
   title: 'badges',
   component: Badges,
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
 const Template = (args) => (
   <>
     <style>{`
-      :root{
-        --color-black: #000;
-        --md-sys-color-error-light: #B3261E;
-        --md-sys-color-on-error-light: #FFFFFF;
-        --md-sys-color-error-container-light: #F9DEDC;
-        --md-sys-color-on-error-container: #410E0B;
-      }
-
       .svg-icon {
         width: 30px;
         height: 30px;
@@ -37,9 +37,7 @@ const Template = (args) => (
         display: flex;
         flex-direction: column;
         height: 30px;
-        left: 50%;
         position: absolute;
-        top: 50%;
         transform: translate(-50%, -50%);
       }
 

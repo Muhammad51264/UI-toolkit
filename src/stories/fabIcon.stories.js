@@ -1,44 +1,21 @@
 import React from 'react';
 import { SearchIcon } from '@storybook/icons';
 import FabIcon from '../components/fabicon';
+import WrapperComponent from './story-wrapper/WrapperComponent.jsx';
 
 export default {
-  title: 'fabIcon',
+  title: 'FabIcon',
   component: FabIcon,
+  decorators: [
+    (Story) => (
+      <WrapperComponent>
+        <Story />
+      </WrapperComponent>
+    ),
+  ],
 };
 
-const Template = (args) => (
-  <>
-    <style>
-      {`
-        :root{
-          --md-ripple-pressed-color:#EADDFF;
-          --md-sys-color-on-primary-container-light: #21005D;
-          --md-sys-color-on-primary-light: #FFFFFF;
-          --md-sys-color-on-secondary-container-light: #1D192B;
-          --md-sys-color-on-secondary-light: #FFFFFF;
-          --md-sys-color-on-surface-light: #1C1B1F;
-          --md-sys-color-on-tertiary-container-light: #31111D;
-          --md-sys-color-on-tertiary-container-light: #31111D;
-          --md-sys-color-on-tertiary-light: #FFFFFF;
-          --md-sys-color-primary-container-light: #EADDFF;
-          --md-sys-color-secondary-container-light: #E8DEF8;
-          --md-sys-color-surface-light:#FFFBFE;
-          --md-sys-color-tertiary-container-light: #FFD8E4;
-          --md-sys-typescale-body-small-font-family-name: Roboto;
-          --md-sys-typescale-body-small-font-size: 12px;
-          --md-sys-typescale-body-small-font-weight: 400px;
-          --md-sys-typescale-label-large-font-family-name: Roboto;
-          --md-sys-typescale-label-large-font-size: 14px;
-          --md-sys-typescale-label-large-font-weight: 500px;
-          --md-sys-typescale-label-medium-font-family-name: Roboto;
-          --md-sys-typescale-label-medium-font-size: 12px;
-          --md-sys-typescale-label-medium-font-weight: 500px;
-      `}
-    </style>
-    <FabIcon {...args}></FabIcon>
-  </>
-);
+const Template = (args) => <FabIcon {...args}></FabIcon>;
 
 export const Default = Template.bind({});
 Default.args = {

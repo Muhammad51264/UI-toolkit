@@ -29,24 +29,6 @@ const Template = (args) => {
   }, [addedSnackbar]);
   return (
     <>
-      <style>
-        {`
-        :root{
-            --md-sys-color-inverse-surface: #322F35;
-            --md-sys-shape-corner-extra-small: 0.25rem;
-            --md-sys-typescale-label-large-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            --md-sys-typescale-body-medium-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            --md-sys-typescale-label-large-weight: 500;
-            --md-sys-typescale-body-medium-weight: 400;
-            --md-sys-typescale-label-large-size: 1rem;
-            --md-sys-typescale-body-medium-size: 1rem;
-            --md-sys-color-inverse-primary: #D0BCFF;
-            --md-sys-color-inverse-on-surface: #F5EFF7;
-            --md-ripple-pressed-color: transparent;
-        }
-
-        `}
-      </style>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <Snackbar {...args} animationDuration={0} />
         <button
@@ -89,8 +71,8 @@ Default.args = {
   ...primary,
 };
 
-export const customMinWidth = Template.bind({});
-customMinWidth.args = {
+export const CustomMinWidth = Template.bind({});
+CustomMinWidth.args = {
   ...primary,
   minWidth: '18.75rem',
 };

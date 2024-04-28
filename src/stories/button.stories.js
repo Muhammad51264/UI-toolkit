@@ -14,31 +14,7 @@ export default {
   ],
 };
 
-const Template = (args) => (
-  <>
-    <style>
-      {`
-        :root{
-          --md-sys-color-on-primary: #FFFFFF;
-          --md-sys-color-primary: #6750A4;
-          --md-sys-color-outline: #79747E;
-          --md-sys-color-secondary-container: #E8DEF8;
-          --md-sys-color-on-secondary-container: #1D192B;
-          --md-sys-color-secondary: #625B71;
-          --md-sys-state-focus-indicator-thickness: 3px;
-          --md-sys-state-focus-indicator-outer-offset: 2px;
-          --md-sys-color-on-surface: 29, 27, 32;
-          --md-sys-typescale-label-large-tracking: 0.5pt;
-          --md-sys-shape-corner-full: 20px;
-          --md-sys-color-surface-container-low: #F7F2FA;
-          --md-sys-typescale-label-large-font: 20pt;
-          --md-sys-typescale-label-large-weight: 500;
-          --md-sys-typescale-label-large-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      `}
-    </style>
-    <Button {...args} />
-  </>
-);
+const Template = (args) => <Button {...args} />;
 
 const primary = {
   icon: (
@@ -113,7 +89,8 @@ Draggable.args = {
 };
 
 export const WithoutIcon = Template.bind({});
-Draggable.args = {
+WithoutIcon.args = {
   ...primary,
   icon: '',
+  text: 'Button',
 };
