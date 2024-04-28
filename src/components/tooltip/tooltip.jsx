@@ -16,6 +16,8 @@ const ToolTip = ({
     display: false,
     isHovered: false,
   });
+  const [isVisible, setIsVisible] = useState(false);
+
   const timerRef = useRef(null);
   const opacityStyle = useMemo(() => {
     if (tooltipState.display || tooltipState.isHovered) {
@@ -26,6 +28,7 @@ const ToolTip = ({
 
   const handleContainerHover = () => {
     clearTimeout(timerRef.current);
+    setIsVisible(true);
     setTooltipState((prevState) => ({ ...prevState, display: true }));
   };
 
@@ -39,6 +42,7 @@ const ToolTip = ({
 
   const handleTooltipHover = () => {
     clearTimeout(timerRef.current);
+    setIsVisible(true);
     setTooltipState((prevState) => ({ ...prevState, isHovered: true }));
   };
 
@@ -72,6 +76,14 @@ const ToolTip = ({
     };
   }, [tooltipState.display]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (!tooltipState.display && !tooltipState.isHovered && !persistent) {
+        setIsVisible(false);
+      }
+    }, 400);
+  }, [tooltipState, persistent]);
+
   return (
     <div
       className={style.tooltipContainer}
@@ -79,28 +91,31 @@ const ToolTip = ({
       onMouseLeave={handleContainerLeave}
       data-testid="tooltipContainer"
     >
-      <div className={style.tooltipWrapper}>
-        <div
-          onMouseOver={handleTooltipHover}
-          onMouseLeave={handleTooltipLeave}
-          className={`${style.tooltip} ${style[className]} ${style[position]} ${opacityStyle}`}
-        >
-          {variant === 'plain' ? (
-            <div className={style.plain}>{text}</div>
-          ) : (
-            <div className={style.rich}>
-              {!!subhead.length && <p className={style.subhead}>{subhead}</p>}
-              {!!text && <p className={style.richText}>{text}</p>}
-              {(firstActionButton || secondActionButton) && (
-                <div className={style.tooltipButtons}>
-                  {firstActionButton}
-                  {secondActionButton}
-                </div>
-              )}
-            </div>
-          )}
+      {isVisible && (
+        <div className={style.tooltipWrapper}>
+          <div
+            onMouseOver={handleTooltipHover}
+            onMouseLeave={handleTooltipLeave}
+            data-testid="tooltipContentWrapper"
+            className={`${style.tooltip} ${style[className]} ${style[position]} ${opacityStyle}`}
+          >
+            {variant === 'plain' ? (
+              <div className={style.plain}>{text}</div>
+            ) : (
+              <div className={style.rich}>
+                {!!subhead.length && <p className={style.subhead}>{subhead}</p>}
+                {!!text && <p className={style.richText}>{text}</p>}
+                {(firstActionButton || secondActionButton) && (
+                  <div className={style.tooltipButtons}>
+                    {firstActionButton}
+                    {secondActionButton}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

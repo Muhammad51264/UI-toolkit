@@ -26,6 +26,21 @@ const Template = (args) => (
         --md-sys-typescale-title-medium-letter-spacing: 0.15px;
         --md-sys-color-inverse-surface-light: #313033;
         --md-sys-color-inverse-on-surface-light: #F4EFF4;
+        --md-sys-color-on-primary: #FFFFFF;
+        --md-sys-color-primary: #6750A4;
+        --md-sys-color-outline: #79747E;
+        --md-sys-color-secondary-container: #E8DEF8;
+        --md-sys-color-on-secondary-container: #1D192B;
+        --md-sys-color-secondary: #625B71;
+        --md-sys-state-focus-indicator-thickness: 3px;
+        --md-sys-state-focus-indicator-outer-offset: 2px;
+        --md-sys-color-on-surface: 29, 27, 32;
+        --md-sys-typescale-label-large-tracking: 0.5pt;
+        --md-sys-shape-corner-full: 20px;
+        --md-sys-color-surface-container-low: #F7F2FA;
+        --md-sys-typescale-label-large-font: 20pt;
+        --md-sys-typescale-label-large-weight: 500;
+        --md-sys-typescale-label-large-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
 
       *{
@@ -91,8 +106,10 @@ const Template = (args) => (
 
 export const Rich = Template.bind({});
 Rich.args = {
-  firstActionButton: <Button variant="text">Click</Button>,
-  secondActionButton: <Button variant="text">Click</Button>,
+  firstActionButton: <Button name="button1" variant="textType" text="button" />,
+  secondActionButton: (
+    <Button name="button2" variant="textType" text="button" />
+  ),
   position: 'bottomRight',
   subhead: 'Plain tooltips',
   text: "Plain tooltips briefly describe a UI element. They're best used for labelling UI elements with no text, like icon-only buttons and fields.",
