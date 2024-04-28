@@ -146,7 +146,6 @@ describe('Tooltip Component', () => {
     fireEvent.mouseOver(tooltip);
 
     const tooltipContentWrapper = screen.getByTestId('tooltipContentWrapper');
-    // fireEvent.mouseLeave(tooltip);
 
     fireEvent.mouseOver(tooltipContentWrapper);
 
