@@ -1,11 +1,9 @@
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { screen, deepQuerySelector } from 'shadow-dom-testing-library';
 import CheckBox from './checkbox.jsx';
-import React from 'react';
 
-const renderCheckbox = (props) => {
-  return render(<CheckBox {...props} />);
-};
+const renderCheckbox = (props) => render(<CheckBox {...props} />);
 
 describe('Checkbox component', () => {
   it('renders with default props and functionality', async () => {

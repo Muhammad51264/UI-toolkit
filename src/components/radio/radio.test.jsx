@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import Radio from './radio';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
 import userEvent from '@testing-library/user-event';
+import Radio from './radio.jsx';
 
 describe('Radio component', () => {
   beforeAll(() => {
@@ -14,15 +14,14 @@ describe('Radio component', () => {
     return waitFor(() => screen.getByShadowRole('radio'));
   };
 
-  const getRadioInput = (mdRadioHost) => {
-    return deepQuerySelector(mdRadioHost, 'input[type="radio"]');
-  };
+  const getRadioInput = (mdRadioHost) =>
+    deepQuerySelector(mdRadioHost, 'input[type="radio"]');
 
-  it('It renders successfully', async () => {
+  it('renders successfully', async () => {
     await renderRadio();
   });
 
-  it('Clicking on a radio button should select it', async () => {
+  it('selects radio button on click', async () => {
     const mdRadioHost = await renderRadio();
     const radioInput = getRadioInput(mdRadioHost);
 
@@ -31,7 +30,7 @@ describe('Radio component', () => {
     expect(radioInput).toBeChecked();
   });
 
-  it('Clicking on a disabled radio button should not select it', async () => {
+  it('does not select disabled radio button on click', async () => {
     const mdRadioHost = await renderRadio({ disabled: true });
     const radioInput = getRadioInput(mdRadioHost);
 
@@ -40,7 +39,7 @@ describe('Radio component', () => {
     expect(radioInput).not.toBeChecked();
   });
 
-  it('Clicking on a selected radio button should not deselect it', async () => {
+  it('does not deselect already selected radio button on click', async () => {
     const mdRadioHost = await renderRadio({ checked: true });
     const radioInput = getRadioInput(mdRadioHost);
     fireEvent.click(radioInput);

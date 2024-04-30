@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
-import styles from './styles.module.css';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 const useDebouncedRippleCleanUp = (rippleCount, duration, cleanUpFunction) => {
   useLayoutEffect(() => {
@@ -45,21 +45,19 @@ function Ripple({ duration }) {
   return (
     <div className={styles.ripple} onMouseDown={addRipple} data-testid="ripple">
       {rippleArray.length > 0 &&
-        rippleArray.map((ripple, index) => {
-          return (
-            <span
-              className={styles.element}
-              key={'span' + index}
-              style={{
-                top: ripple.y || 0,
-                left: ripple.x || 0,
-                width: ripple.size,
-                height: ripple.size,
-                animationDuration: `${duration}ms`,
-              }}
-            />
-          );
-        })}
+        rippleArray.map((ripple, index) => (
+          <span
+            className={styles.element}
+            key={`span${index}`}
+            style={{
+              top: ripple.y || 0,
+              left: ripple.x || 0,
+              width: ripple.size,
+              height: ripple.size,
+              animationDuration: `${duration}ms`,
+            }}
+          />
+        ))}
     </div>
   );
 }

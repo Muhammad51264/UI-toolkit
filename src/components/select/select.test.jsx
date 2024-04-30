@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { deepQuerySelector, screen } from 'shadow-dom-testing-library';
-import { expect, userEvent } from '@storybook/test';
+import { expect } from '@storybook/test';
 import Select from './select.jsx';
 
 describe('Select component', () => {
@@ -61,11 +61,11 @@ describe('Select component', () => {
     return selectContainer;
   };
 
-  it('It renders successfully', () => {
+  it('renders successfully', () => {
     renderSelect();
   });
 
-  it('Filled select renders successfully', () => {
+  it('renders filled select successfully', () => {
     renderSelect({ isFilled: true });
 
     const filledSelect = document.querySelector('md-filled-select');
@@ -73,7 +73,7 @@ describe('Select component', () => {
     expect(filledSelect).toBeInTheDocument();
   });
 
-  it('Select renders with icon', () => {
+  it('renders select with icon', () => {
     renderSelect({ icon: <div>icon</div> });
 
     const filledSelect = document.querySelector('md-icon');
@@ -81,7 +81,7 @@ describe('Select component', () => {
     expect(filledSelect).toBeInTheDocument();
   });
 
-  it('Select options are rendered', () => {
+  it('renders select options', () => {
     renderSelect();
 
     const mdSelectElements = screen.getAllByRole('presentation');
@@ -93,7 +93,7 @@ describe('Select component', () => {
     });
   });
 
-  it('Select label is appearing', async () => {
+  it('displays select label', async () => {
     renderSelect({ label: 'test' });
 
     const selectContainer = await getSelectContainer();
@@ -103,7 +103,7 @@ describe('Select component', () => {
     expect(label).toHaveTextContent('test');
   });
 
-  it('Select supporting text is visible', async () => {
+  it('displays select supporting text', async () => {
     renderSelect({ 'supporting-text': 'test' });
 
     const selectContainer = await getSelectContainer();
@@ -111,7 +111,7 @@ describe('Select component', () => {
     expect(selectContainer).toHaveAttribute('supporting-text', 'test');
   });
 
-  it('Select error text is visible', async () => {
+  it('displays select error text', async () => {
     renderSelect({ error: true, 'error-text': 'test' });
 
     const selectContainer = await getSelectContainer();
@@ -119,7 +119,7 @@ describe('Select component', () => {
     expect(selectContainer).toHaveAttribute('error-text', 'test');
   });
 
-  it('Select is disabled', async () => {
+  it('is disabled', async () => {
     renderSelect({ disabled: true });
 
     const selectContainer = await getSelectContainer();
@@ -127,7 +127,7 @@ describe('Select component', () => {
     expect(selectContainer).toHaveAttribute('disabled');
   });
 
-  it('Select is required', async () => {
+  it('is required', async () => {
     renderSelect({ required: true });
 
     const selectContainer = await getSelectContainer();
@@ -140,7 +140,7 @@ describe('Select component', () => {
     expect(fieldContainer).toHaveClass('required');
   });
 
-  it('Selecting an option will display it in the select input', async () => {
+  it('displays selected option in the select input', async () => {
     renderSelect();
 
     const shadowElement = await screen.findAllByShadowRole('option');
@@ -150,7 +150,7 @@ describe('Select component', () => {
     await expect(shadowElement[0]).toHaveClass('list-item selected');
   });
 
-  it('Select menu events are triggered correctly - open, close, opening, closing, input, change', async () => {
+  it('triggers select menu events correctly (open, close, opening, closing, input, change)', async () => {
     renderSelect({
       onOpened: openMenu,
       onClosed: closeMenu,

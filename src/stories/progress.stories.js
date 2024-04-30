@@ -6,18 +6,7 @@ export default {
   component: Progress,
 };
 
-const Template = (args) => (
-  <>
-    <style>
-      {`
-        :root{
-          --md-sys-color-surface-tint-light: #6750A4;
-          --md-sys-color-primary-container-light: #EADDFF;
-      `}
-    </style>
-    <Progress {...args}></Progress>
-  </>
-);
+const Template = (args) => <Progress {...args}></Progress>;
 
 export const Circular = Template.bind({});
 Circular.args = {

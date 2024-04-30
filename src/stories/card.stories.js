@@ -18,22 +18,6 @@ const Template = (args) => (
   <>
     <style>
       {`
-:root {
-  --md-sys-color-on-surface: #1D1B20;
-  --md-sys-state-dragged-state-layer-opacity:0.16;
-  --md-sys-color-surface-container-low: #F7F2FA;
-  --md-sys-color-surface: #FEF7FF;
-  --md-sys-color-shadow: #000000;
-  --md-sys-color-secondary: #625B71;
-  --md-sys-color-surface-container-highest: #E6E0E9;
-  --md-sys-color-outline-variant: #CAC4D0;
-  --md-sys-color-outline: rgb(121, 116, 126,0.32);
-  --md-ripple-hover-color: rgba(29, 27, 32, 0.15);
-  --md-ripple-pressed-color: var(--md-sys-color-on-surface);
-  --md-elevation-shadow-color:var(--md-sys-color-shadow);
-  --md-sys-state-focus-indicator-outer-offset:2px;
-  --md-sys-state-focus-indicator-thickness: 3px;
- }
  
  *{
   margin: 0;
@@ -54,26 +38,24 @@ const Template = (args) => (
  `}
     </style>
 
-    <div className='card-wrapper'>
-
-    <Card {...args}>
-      <div className="container">
-        <h1>Headline</h1>
-        <h4>Subhead</h4>
-        <p
-          style={{
-            textAlign: 'left',
-            margin: '0.625rem 0',
-          }}
-        >
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate et
-          quibusdam, neque animi aliquid tenetur. Officia facilis, veritatis
-          adipisci corporis sit, cumque exercitationem earum necessitatibus id
-          sequi, officiis mollitia rem.
-        </p>
-      </div>
-    </Card>
-
+    <div className="card-wrapper">
+      <Card {...args}>
+        <div className="container">
+          <h1>Headline</h1>
+          <h4>Subhead</h4>
+          <p
+            style={{
+              textAlign: 'left',
+              margin: '0.625rem 0',
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate
+            et quibusdam, neque animi aliquid tenetur. Officia facilis,
+            veritatis adipisci corporis sit, cumque exercitationem earum
+            necessitatibus id sequi, officiis mollitia rem.
+          </p>
+        </div>
+      </Card>
     </div>
   </>
 );
@@ -101,14 +83,14 @@ Outlined.args = {
   cardType: 'outlined',
 };
 
-export const isDisabled = Template.bind({});
-isDisabled.args = {
+export const Disabled = Template.bind({});
+Disabled.args = {
   ...primary,
   disabled: true,
 };
 
-export const isDraggable = Template.bind({});
-isDraggable.args = {
+export const Draggable = Template.bind({});
+Draggable.args = {
   ...primary,
   draggable: true,
 };
