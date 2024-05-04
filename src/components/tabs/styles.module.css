@@ -1,0 +1,166 @@
+.tabs {
+  align-items: end;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  overflow: auto;
+  position: relative;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  width: 100%;
+}
+
+.content.stacked {
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.content.stacked.hasIcon.hasLabel {
+  height: 4rem;
+}
+
+.button {
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  color: var(--md-sys-color-on-surface-variant-light);
+  display: inline-flex;
+  font-family: var(--md-sys-typescale-title-small-font-famil-name);
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  justify-content: center;
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+  z-index: 0;
+  flex: 1;
+}
+
+.button::before {
+  background: var(--md-sys-color-surface-light);
+  content: '';
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.button:hover::before {
+  background: var(--md-sys-color-on-surface-light);
+  opacity: 0.08;
+}
+
+.content {
+  align-items: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  height: 3rem;
+  justify-content: center;
+  position: relative;
+}
+
+.indicator {
+  background: var(--md-sys-color-primary-light);
+  border-radius: 0.1875rem 0.1875rem 0 0;
+  box-sizing: border-box;
+  height: 0.5rem;
+  inset: auto 0 0 0;
+  opacity: 0;
+  position: absolute;
+  transform-origin: bottom left;
+  z-index: -1;
+}
+
+.button,
+slot * {
+  white-space: nowrap;
+}
+
+.button:hover {
+  color: var(--md-sys-color-on-surface-light);
+  cursor: pointer;
+}
+
+.button:hover .icon {
+  color: var(--md-sys-color-on-surface-light);
+}
+
+.button:focus {
+  color: var(--md-sys-color-on-surface-light);
+}
+
+.button:focus .icon {
+  color: var(--md-sys-color-on-surface-light);
+}
+
+.button:active {
+  color: var(--md-sys-color-on-surface-light);
+}
+
+.button:active .icon {
+  color: var(--md-sys-color-on-surface-light);
+}
+
+.active .indicator {
+  opacity: 1;
+}
+
+.active .content:not(.secondary) {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active .icon:not(.secondary) {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active .content.secondary:hover {
+  font-weight: bold;
+}
+
+.active .icon:not(.secondary):hover .icon {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active:focus {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active:focus .icon {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active:active {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active:active .icon {
+  color: var(--md-sys-color-primary-light);
+}
+
+.active:hover::before {
+  background: var(--md-sys-color-primary-light);
+  opacity: 0.08;
+}
+
+.content.secondary {
+  flex: 1;
+}
+
+.icon {
+  color: var(--md-sys-color-on-surface-variant-light);
+  display: inline-flex;
+  fill: currentcolor;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  width: 1.5rem;
+  writing-mode: horizontal-tb;
+}
+
+.content.secondary .indicator {
+  height: 0.125rem;
+}
