@@ -1,0 +1,113 @@
+.tooltipContainer {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.tooltipWrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.tooltip {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.4s ease;
+}
+
+.displayTooltip {
+  opacity: 1;
+}
+
+.plain {
+  align-items: center;
+  background-color: var(--md-sys-color-inverse-surface-light);
+  border-radius: 5px;
+  color: var(--md-sys-color-inverse-on-surface-light);
+  display: flex;
+  font-size: var(--md-sys-typescale-title-small-font-size);
+  height: 28px;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.rich {
+  background-color: var(--md-ref-palette-neutral94);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  overflow-wrap: break-word;
+  padding: 8px 0;
+  width: max-content;
+}
+
+.subhead {
+  font-size: var(--md-sys-typescale-title-medium-font-size);
+  font-weight: var(--md-sys-typescale-title-medium-font-weight);
+  letter-spacing: var(--md-sys-typescale-title-medium-letter-spacing);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  margin: 0 0 4px 0;
+  padding: 0 16px;
+}
+
+.richText {
+  font-size: var(--md-sys-typescale-title-small-font-size);
+  font-weight: var(--md-sys-typescale-title-small-font-weight);
+  letter-spacing: var(--md-sys-typescale-title-small-letter-spacing);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  margin: 0 0 4px 0;
+  padding: 0 16px;
+}
+
+.top {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  left: 50%;
+  top: calc(100% + 10px);
+  transform: translateX(-50%);
+}
+
+.right {
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left {
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.topLeft {
+  bottom: calc(100% + 10px);
+  right: calc(100% + 10px);
+}
+
+.topRight {
+  bottom: calc(100% + 10px);
+  left: calc(100% + 10px);
+}
+
+.bottomRight {
+  left: calc(100% + 10px);
+  top: calc(100% + 10px);
+}
+
+.bottomLeft {
+  right: calc(100% + 10px);
+  top: calc(100% + 10px);
+}
+
+.tooltipButtons {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  padding: 8px 0;
+}
