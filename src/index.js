@@ -6,6 +6,7 @@ export { default as Chip } from './components/chip';
 export { default as Dialog } from './components/dialog';
 export { default as Divider } from './components/divider';
 export { default as FabIcon } from './components/fabicon';
+export { default as IconButton } from './components/icon-button';
 export { default as Input } from './components/input';
 export { default as Progress } from './components/progress';
 export { default as Radio } from './components/radio';
