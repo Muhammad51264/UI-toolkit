@@ -93,7 +93,7 @@ const List = ({
           trailing
         )}
       </div>
-      <Ripple />
+      {!isDisabled && <Ripple />}
     </div>
   );
 };
