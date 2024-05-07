@@ -4,11 +4,7 @@ import styles from './styles.module.css';
 import Ripple from '../ripple';
 
 const Button = ({ icon, text, variant, ...props }) => (
-  <button
-    {...props}
-    className={`${styles.button} ${styles[variant]}`}
-    {...props}
-  >
+  <button className={`${styles.button} ${styles[variant]}`} {...props}>
     {icon && <span className={styles.icon}>{icon}</span>}
     <span
       className={`${styles.text} ${icon && styles['text-no-padding-left']}`}
